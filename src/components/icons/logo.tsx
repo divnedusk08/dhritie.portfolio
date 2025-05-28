@@ -4,11 +4,11 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 80 20" // Adjusted viewBox width for shorter name
-      width="80" // Adjusted width
+      viewBox="0 0 240 20" // Adjusted viewBox width for longer name
+      width="240" // Adjusted width
       height="20"
-      aria-label="Dhriti Logo"
-      className="h-5 w-auto" // Adjusted height, width will scale
+      aria-label="Dhriti Erusalagandi Logo"
+      className="h-5 w-auto" // Height is fixed, width will scale based on viewBox
       {...props}
     >
       <text
@@ -17,9 +17,9 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
         fontFamily="var(--font-geist-sans), Arial, sans-serif"
         fontSize="20"  // Increased font size
         fontWeight="bold"
-        fill="currentColor" 
+        fill="currentColor"
       >
-        Dhriti
+        Dhriti Erusalagandi
       </text>
     </svg>
   );
