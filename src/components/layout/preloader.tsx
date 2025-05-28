@@ -17,10 +17,10 @@ export function Preloader({ onLoaded, textToShow }: PreloaderProps) {
     // Start text fade-in
     const textTimer = setTimeout(() => {
       setTextIsVisible(true);
-    }, 100); // Short delay before text starts appearing
+    }, 200); // Delay before text starts appearing
 
     // Duration for the preloader
-    const preloaderDuration = 3000; // Total time for preloader (e.g., 3 seconds)
+    const preloaderDuration = 2500; // Total time for preloader (e.g., 2.5 seconds)
     
     const visibilityTimer = setTimeout(() => {
       setIsVisible(false);
@@ -40,18 +40,17 @@ export function Preloader({ onLoaded, textToShow }: PreloaderProps) {
   return (
     <div
       className={cn(
-        "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black transition-opacity duration-500 ease-in-out", // Black background
+        "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-500 ease-in-out", // Use theme background
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
       )}
     >
       <div
         className={cn(
-          "transition-all duration-1500 ease-in-out", // Slower, more dramatic reveal
-          textIsVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+          "transition-all duration-1000 ease-out", // Smoother, slightly longer transition for text
+          textIsVisible ? "opacity-100 scale-100" : "opacity-0 scale-95" // Start slightly smaller and scale up
         )}
       >
-        <h1 className="text-5xl md:text-7xl font-bold text-center text-white select-none"
-            style={{ textShadow: '0 0 8px rgba(255,255,255,0.8), 0 0 16px rgba(255,255,255,0.6), 0 0 24px rgba(255,255,255,0.4), 0 0 32px rgba(210,225,255,0.3)' }}>
+        <h1 className="text-5xl md:text-7xl font-bold text-center text-primary select-none"> {/* Use primary text color */}
           {textToShow}
         </h1>
       </div>
