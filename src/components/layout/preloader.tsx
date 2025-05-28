@@ -31,8 +31,22 @@ export function Preloader({ onLoaded, duration = 2500 }: PreloaderProps) {
       aria-hidden={!isVisible}
       data-testid="preloader"
     >
-      <div className="glowing-orb-container">
-        <div className="glowing-orb"></div>
+      <div className="deathly-hallows-symbol-container">
+        <svg 
+          className="deathly-hallows-symbol" 
+          width="150" 
+          height="150" 
+          viewBox="0 0 200 200" 
+          xmlns="http://www.w3.org/2000/svg"
+          aria-label="Deathly Hallows Symbol"
+        >
+          {/* Triangle */}
+          <polygon points="100,10 190,170 10,170" className="dh-triangle" />
+          {/* Circle */}
+          <circle cx="100" cy="115" r="58" className="dh-circle" />
+          {/* Line */}
+          <line x1="100" y1="10" x2="100" y2="170" className="dh-line" />
+        </svg>
       </div>
     </div>
   );
