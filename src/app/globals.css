@@ -140,9 +140,9 @@ body {
 }
 
 .typewriter-cursor {
-  display: inline-block; 
+  display: inline-block;
   animation: blink 0.7s infinite;
-  margin-left: 0.1em; 
+  margin-left: 0.1em;
 }
 
 /* Subtle blink for scroll prompt */
@@ -162,11 +162,10 @@ body {
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   font-size: 1rem; /* Base font size for code */
   padding: 1.5rem;
-  cursor: default; /* Default cursor until click prompt is active */
 }
 
-.python-preloader-container.opacity-100[onclick] {
-  cursor: pointer; /* Pointer cursor when clickable */
+.python-preloader-container.cursor-pointer {
+  cursor: pointer;
 }
 
 .python-preloader-content {
@@ -195,16 +194,10 @@ body {
   color: #c9d1d9; /* Match general text color for cursor */
 }
 
-.click-prompt {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+.click-prompt-inline {
   color: #f0b90b; /* A bright yellow/gold for prompt */
-  font-size: 1.2rem;
-  padding: 0.75rem 1.25rem;
-  border-radius: 0.25rem;
-  /* background-color: rgba(40, 44, 52, 0.8); Optional background for the prompt */
-  animation: subtle-blink 1.8s infinite; /* Use subtle-blink for the prompt */
+  font-size: 1.1rem; /* Slightly adjusted for inline context */
+  animation: subtle-blink 1.8s infinite;
   white-space: nowrap;
+  /* margin-left: -1.5ch; Ensure alignment if needed, might depend on line number width */
 }
