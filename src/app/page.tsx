@@ -28,6 +28,7 @@ export default function HomePage() {
 
     let typingTimeoutId: NodeJS.Timeout;
     if (typedTitle.length < fullTitle.length) {
+      setShowCursor(true); // Ensure cursor is visible while typing
       typingTimeoutId = setTimeout(() => {
         setTypedTitle(fullTitle.substring(0, typedTitle.length + 1));
       }, 100); 
@@ -48,11 +49,11 @@ export default function HomePage() {
       <main className="flex-1 page-transition">
         {/* Hero Section */}
         <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24">
-          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
-            <span className="text-primary">{typedTitle}</span>
+          <h1 className="text-5xl font-bold tracking-tight text-primary sm:text-6xl md:text-7xl">
+            {typedTitle}
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
-          <p className="mt-6 max-w-3xl text-lg text-muted-foreground sm:text-xl md:text-2xl">
+          <p className="mt-6 max-w-3xl font-bold text-md text-muted-foreground sm:text-lg md:text-xl">
             I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
           </p>
           <div className="mt-12 flex flex-col items-center animate-subtle-blink">
