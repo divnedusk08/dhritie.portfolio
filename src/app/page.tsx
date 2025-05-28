@@ -33,7 +33,7 @@ export default function HomePage() {
   }, [typedTitle, fullTitle]);
 
   if (isLoading) {
-    return <Preloader onLoaded={() => setIsLoading(false)} duration={2500} />;
+    return <Preloader onLoaded={() => setIsLoading(false)} duration={1500} />;
   }
 
   return (
