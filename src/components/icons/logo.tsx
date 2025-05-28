@@ -1,13 +1,14 @@
+
 import type { SVGProps } from 'react';
 
 export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 240 20" // Adjusted viewBox width for longer name
-      width="240" // Adjusted width
+      viewBox="0 0 100 20" // Adjusted viewBox width for "Dhriti"
+      width="100" // Adjusted width for "Dhriti"
       height="20"
-      aria-label="Dhriti Erusalagandi Logo"
+      aria-label="Dhriti Logo"
       className="h-5 w-auto" // Height is fixed, width will scale based on viewBox
       {...props}
     >
@@ -19,7 +20,7 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
         fontWeight="bold"
         fill="currentColor"
       >
-        Dhriti Erusalagandi
+        Dhriti
       </text>
     </svg>
   );
