@@ -16,10 +16,10 @@ import ContactSection from "@/app/(main)/contact/page";
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true); // Preloader state
   const [currentBio, setCurrentBio] = useState<string>(
-    "Welcome to my personal space! I am a passionate individual dedicated to creating impactful solutions and continuously learning new things. Explore my work and achievements to get a better sense of my journey."
+    "I’m a passionate 8th grader at Stiles Middle School with a strong interest in entrepreneurship, creativity, and making a difference through innovative ideas. I enjoy coming up with original solutions, exploring new projects, and learning through hands-on experience. I’m driven by curiosity, motivated by impact, and always ready to grow and take on something new."
   );
 
-  const fullTitle = "Hi, I'm Dhriti"; // Removed Erusalagandi
+  const fullTitle = "Hi, I'm Dhriti";
   const [typedTitle, setTypedTitle] = useState("");
   const [showCursor, setShowCursor] = useState(true);
 
@@ -104,3 +104,4 @@ export default function HomePage() {
     </div>
   );
 }
+
