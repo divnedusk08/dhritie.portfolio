@@ -30,7 +30,7 @@ export default function HomePage() {
                 <div className="flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
                   <Image
                     src="https://placehold.co/120x120.png"
-                    alt="Your Name"
+                    alt="Dhriti Erusalagandi"
                     width={120}
                     height={120}
                     className="rounded-full border-4 border-primary shadow-md"
@@ -38,7 +38,7 @@ export default function HomePage() {
                   />
                   <div>
                     <h1 className="text-3xl font-bold tracking-tight text-primary md:text-4xl">
-                      Your Name Here
+                      Dhriti Erusalagandi
                     </h1>
                     <p className="mt-1 text-lg text-muted-foreground md:text-xl">
                       Your Profession / Tagline
