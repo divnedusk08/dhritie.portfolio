@@ -25,30 +25,43 @@ export function MagicalBookPreloader({ onNavigation, navItems }: MagicalBookPrel
   const [showPageLinks, setShowPageLinks] = useState(false);
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
   const [sparkles, setSparkles] = useState<React.CSSProperties[]>([]);
+  const [showChoosingPathText, setShowChoosingPathText] = useState(false);
 
   useEffect(() => {
     const generateSparkles = () => {
-      const newSparkles = Array.from({ length: 25 }).map(() => ({ // Increased sparkles
-        top: `${Math.random() * 110 - 5}%`, 
+      const newSparkles = Array.from({ length: 25 }).map(() => ({
+        top: `${Math.random() * 110 - 5}%`,
         left: `${Math.random() * 110 - 5}%`,
-        animationDelay: `${Math.random() * 3}s`, // Slower, more spread out animation
-        transform: `scale(${Math.random() * 0.7 + 0.5})`, // Slightly larger sparkles
+        animationDelay: `${Math.random() * 3}s`,
+        transform: `scale(${Math.random() * 0.7 + 0.5})`,
       }));
       setSparkles(newSparkles);
     };
     generateSparkles();
-    const intervalId = setInterval(generateSparkles, 3500); // Slower refresh
+    const intervalId = setInterval(generateSparkles, 3500);
     return () => clearInterval(intervalId);
   }, []);
 
   useEffect(() => {
+    let pageLinksTimer: NodeJS.Timeout;
+    let choosingPathTimer: NodeJS.Timeout;
+
     if (isBookOpen && !showPageLinks) {
-      const timer = setTimeout(() => {
-        setShowPageLinks(true);
-      }, 800); 
-      return () => clearTimeout(timer);
+      setShowChoosingPathText(true); // Show "choosing your path..."
+      choosingPathTimer = setTimeout(() => {
+        setShowChoosingPathText(false); // Hide "choosing your path..."
+        setShowPageLinks(true); // Then show page links
+      }, 1500); // Duration for "choosing your path..."
+    } else if (!isBookOpen) {
+      // Reset when book is closed or initially
+      setShowChoosingPathText(false);
+      setShowPageLinks(false);
     }
-  }, [isBookOpen, showPageLinks]);
+    return () => {
+      clearTimeout(pageLinksTimer);
+      clearTimeout(choosingPathTimer);
+    };
+  }, [isBookOpen]);
 
   const handleBookClick = () => {
     if (!isBookOpen && !isAnimatingOut) {
@@ -61,7 +74,10 @@ export function MagicalBookPreloader({ onNavigation, navItems }: MagicalBookPrel
     setIsAnimatingOut(true);
     setTimeout(() => {
       onNavigation(href);
-    }, 700); 
+      // Reset state if needed for re-entry, though onNavigation might unmount this component
+      // setIsBookOpen(false); 
+      // setIsAnimatingOut(false);
+    }, 700);
   };
 
   return (
@@ -76,26 +92,29 @@ export function MagicalBookPreloader({ onNavigation, navItems }: MagicalBookPrel
           "book-container group",
           isBookOpen ? "book-is-open" : ""
         )}
-        onClick={handleBookClick}
+        onClick={!isBookOpen ? handleBookClick : undefined} // Only allow click to open when closed
       >
         <div className={cn("book", isAnimatingOut ? "book-zoom-out-animation" : "")}>
           {!isAnimatingOut && sparkles.map((style, i) => <Sparkle key={i} style={style} />)}
 
           <div className="book-cover">
             <div className="book-cover-content">
-              <BookOpen className="book-icon h-20 w-20 md:h-28 md:w-28 mb-4 text-primary-foreground/80" />
+              <BookOpen className="book-icon h-20 w-20 md:h-28 md:w-28 mb-3 text-primary-foreground/80" />
               <p className="book-prompt-text">
-                click here to open
+                {isBookOpen ? "" : "CLICK HERE TO OPEN"}
               </p>
             </div>
           </div>
 
           <div className="book-pages-container">
+            {isBookOpen && showChoosingPathText && !showPageLinks && (
+              <p className="choosing-path-text">choosing your path...</p>
+            )}
             {showPageLinks && navItems.map((item) => (
               <button
                 key={item.href}
                 onClick={(e) => {
-                  e.stopPropagation(); 
+                  e.stopPropagation();
                   handleLinkClick(item.href);
                 }}
                 className="book-page-link group/link"
