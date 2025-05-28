@@ -6,35 +6,64 @@ import { cn } from '@/lib/utils';
 
 interface PreloaderProps {
   onLoaded: () => void;
-  duration?: number;
 }
 
-export function Preloader({ onLoaded, duration = 2500 }: PreloaderProps) {
+const codeLine = 'print("Hi, I\'m Dhriti")';
+
+export function Preloader({ onLoaded }: PreloaderProps) {
   const [isVisible, setIsVisible] = useState(true);
+  const [typedText, setTypedText] = useState<string>('');
+  const [charIndex, setCharIndex] = useState(0);
+  const [isTypingDone, setIsTypingDone] = useState(false);
+  const [canClickToContinue, setCanClickToContinue] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-      // Add a slight delay for fade-out animation to complete before calling onLoaded
-      setTimeout(onLoaded, 500); // Corresponds to preloader-fade-out duration (0.5s)
-    }, duration);
+    if (!isTypingDone && charIndex < codeLine.length) {
+      const typingTimer = setTimeout(() => {
+        setTypedText((prev) => prev + codeLine[charIndex]);
+        setCharIndex((prev) => prev + 1);
+      }, 80); // Adjust typing speed (ms)
+      return () => clearTimeout(typingTimer);
+    } else if (charIndex >= codeLine.length && !isTypingDone) {
+      setIsTypingDone(true);
+      const promptTimer = setTimeout(() => {
+        setCanClickToContinue(true);
+      }, 500); // Delay before showing click prompt
+      return () => clearTimeout(promptTimer);
+    }
+  }, [charIndex, isTypingDone]);
 
-    return () => clearTimeout(timer);
-  }, [onLoaded, duration]);
+  const handleClick = () => {
+    if (canClickToContinue) {
+      setIsVisible(false);
+      // Delay for fade-out animation before calling onLoaded
+      setTimeout(onLoaded, 300); // Matches fade-out duration
+    }
+  };
 
   return (
     <div
       className={cn(
-        "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-500 ease-in-out",
+        "python-preloader-container fixed inset-0 z-[100] flex items-start justify-start transition-opacity duration-300 ease-in-out",
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
       )}
+      onClick={handleClick}
       aria-hidden={!isVisible}
       data-testid="preloader"
     >
-      <div className="pulsing-dots-container">
-        <div className="pulsing-dot"></div>
-        <div className="pulsing-dot"></div>
-        <div className="pulsing-dot"></div>
+      <div className="python-preloader-content">
+        <div className="code-line">
+          <span className="line-number">1</span>
+          <span>
+            {typedText}
+            {!isTypingDone && <span className="typewriter-cursor">_</span>}
+          </span>
+        </div>
+        {canClickToContinue && (
+          <div className="click-prompt">
+            Click anywhere to continue...
+          </div>
+        )}
       </div>
     </div>
   );

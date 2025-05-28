@@ -140,14 +140,14 @@ body {
 }
 
 .typewriter-cursor {
-  display: inline-block; /* To allow transform if needed and proper spacing */
+  display: inline-block; 
   animation: blink 0.7s infinite;
-  margin-left: 0.1em; /* Small space before cursor */
+  margin-left: 0.1em; 
 }
 
 /* Subtle blink for scroll prompt */
 @keyframes subtle-blink {
-  0%, 100% { opacity: 0.6; }
+  0%, 100% { opacity: 0.7; }
   50% { opacity: 1; }
 }
 
@@ -155,39 +155,56 @@ body {
   animation: subtle-blink 1.5s infinite;
 }
 
-/* Pulsing Dots Preloader Animation */
-.pulsing-dots-container {
+/* Python-style Preloader Styles */
+.python-preloader-container {
+  background-color: #0d1117; /* GitHub dark terminal background */
+  color: #c9d1d9; /* GitHub dark terminal text */
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 1rem; /* Base font size for code */
+  padding: 1.5rem;
+  cursor: default; /* Default cursor until click prompt is active */
+}
+
+.python-preloader-container.opacity-100[onclick] {
+  cursor: pointer; /* Pointer cursor when clickable */
+}
+
+.python-preloader-content {
+  width: 100%;
+}
+
+.code-line {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem; /* Space between dots */
+  align-items: baseline;
+  line-height: 1.5;
 }
 
-.pulsing-dot {
-  width: 1rem; /* Size of dots */
-  height: 1rem;
-  background-color: hsl(var(--accent)); /* Use accent color (pink) */
-  border-radius: 50%;
-  opacity: 0;
-  animation: pulseDot 1.4s infinite ease-in-out both;
-  box-shadow: 0 0 10px hsla(var(--accent), 0.7), 0 0 20px hsla(var(--accent), 0.5);
+.line-number {
+  color: #8b949e; /* GitHub dark line number color */
+  margin-right: 1.5ch;
+  user-select: none;
+  text-align: right; /* Optional: for consistent spacing if numbers vary in digits */
+  min-width: 2ch; /* Ensure some space for line numbers */
 }
 
-.pulsing-dot:nth-child(1) {
-  animation-delay: -0.32s;
+.code-line span:not(.line-number) {
+  color: #58a6ff; /* Python print function color (example) */
 }
 
-.pulsing-dot:nth-child(2) {
-  animation-delay: -0.16s;
+.code-line span:not(.line-number) .typewriter-cursor {
+  color: #c9d1d9; /* Match general text color for cursor */
 }
 
-@keyframes pulseDot {
-  0%, 80%, 100% {
-    transform: scale(0.6);
-    opacity: 0.3;
-  }
-  40% {
-    transform: scale(1.0);
-    opacity: 1;
-  }
+.click-prompt {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #f0b90b; /* A bright yellow/gold for prompt */
+  font-size: 1.2rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.25rem;
+  /* background-color: rgba(40, 44, 52, 0.8); Optional background for the prompt */
+  animation: subtle-blink 1.8s infinite; /* Use subtle-blink for the prompt */
+  white-space: nowrap;
 }

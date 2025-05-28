@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { ChevronDown, UserCircle2 } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { Preloader } from "@/components/layout/preloader"; // Import Preloader
+import { Preloader } from "@/components/layout/preloader"; 
 
 // Import section components
 import AchievementsSection from "@/app/(main)/achievements/page";
@@ -29,11 +29,15 @@ export default function HomePage() {
         setTypedTitle(fullTitle.substring(0, typedTitle.length + 1));
       }, 100); // Adjust typing speed here (milliseconds)
       return () => clearTimeout(timeoutId);
+    } else {
+       // Optionally hide cursor after typing is complete
+       // const cursorTimeout = setTimeout(() => setShowCursor(false), 1000);
+       // return () => clearTimeout(cursorTimeout);
     }
   }, [typedTitle, fullTitle]);
 
   if (isLoading) {
-    return <Preloader onLoaded={() => setIsLoading(false)} duration={1500} />;
+    return <Preloader onLoaded={() => setIsLoading(false)} />;
   }
 
   return (
@@ -42,8 +46,9 @@ export default function HomePage() {
       <main className="flex-1 page-transition">
         {/* Hero Section */}
         <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-primary">
-            {typedTitle}
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+            <span className="text-primary">{typedTitle.substring(0, 7)}</span> 
+            <span className="text-accent">{typedTitle.substring(7)}</span>
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-muted-foreground sm:text-xl md:text-2xl">
