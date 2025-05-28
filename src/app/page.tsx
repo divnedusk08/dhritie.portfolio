@@ -19,24 +19,25 @@ export default function HomePage() {
     "Welcome to my personal space! I am a passionate individual dedicated to creating impactful solutions and continuously learning new things. Explore my work and achievements to get a better sense of my journey."
   );
 
-  const fullTitle = "Hi, I'm Dhriti"; // Changed title
+  const fullTitle = "Hi, I'm Dhriti"; 
   const [typedTitle, setTypedTitle] = useState("");
   const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
-    if (isLoading) return; // Don't start typing until preloader is done
+    if (isLoading) return; 
 
+    let typingTimeoutId: NodeJS.Timeout;
     if (typedTitle.length < fullTitle.length) {
-      const timeoutId = setTimeout(() => {
+      typingTimeoutId = setTimeout(() => {
         setTypedTitle(fullTitle.substring(0, typedTitle.length + 1));
-      }, 100); // Adjust typing speed here (milliseconds)
-      return () => clearTimeout(timeoutId);
+      }, 100); 
     } else {
-       // Optionally hide cursor after typing is complete
-       // const cursorTimeout = setTimeout(() => setShowCursor(false), 1000);
-       // return () => clearTimeout(cursorTimeout);
+      // Keep cursor blinking after typing is complete
+      // setShowCursor(true); // This is already default
     }
+    return () => clearTimeout(typingTimeoutId);
   }, [typedTitle, fullTitle, isLoading]);
+
 
   if (isLoading) {
     return <Preloader onLoaded={() => setIsLoading(false)} />;
@@ -49,10 +50,8 @@ export default function HomePage() {
         {/* Hero Section */}
         <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            <span className="text-primary">{typedTitle.substring(0, 7)}</span> 
-            <span className="text-accent">{typedTitle.substring(7)}</span>
-            {showCursor && typedTitle.length === fullTitle.length && <span className="typewriter-cursor">|</span>}
-            {typedTitle.length < fullTitle.length && <span className="typewriter-cursor">|</span>}
+            <span className="text-primary">{typedTitle}</span>
+            {(showCursor || typedTitle.length < fullTitle.length) && <span className="typewriter-cursor">|</span>}
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-muted-foreground sm:text-xl md:text-2xl">
             I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
