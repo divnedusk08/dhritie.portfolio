@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -25,7 +26,7 @@ export function Header() {
         className={cn(
           "justify-start text-base font-medium hover:bg-accent/10",
           pathname === href
-            ? "text-primary font-semibold"
+            ? "text-foreground font-semibold" // Changed from text-primary
             : "text-foreground/80 hover:text-foreground"
         )}
       >
@@ -38,7 +39,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2" aria-label="Persona Home">
+        <Link href="/" className="flex items-center space-x-2" aria-label="Dhriti Erusalagandi Home">
           <Logo />
         </Link>
         
@@ -50,7 +51,7 @@ export function Header() {
                 className={cn(
                   "text-sm font-medium",
                   pathname === item.href
-                    ? "text-primary hover:text-primary"
+                    ? "text-foreground font-semibold hover:text-foreground/90" // Changed from text-primary hover:text-primary
                     : "text-foreground/70 hover:text-foreground"
                 )}
               >
@@ -69,7 +70,7 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] p-6">
-              <Link href="/" className="mb-6 flex items-center" aria-label="Persona Home">
+              <Link href="/" className="mb-6 flex items-center" aria-label="Dhriti Erusalagandi Home">
                 <Logo />
               </Link>
               <div className="flex flex-col space-y-3">
