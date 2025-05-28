@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import { Geist } from 'next/font/google'; // Geist_Mono removed as not explicitly needed by user
+import { Geist } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -25,8 +25,8 @@ export default function RootLayout({
       <body className={`${geistSans.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light" 
-          enableSystem={false} // User specified light background, so no system theme for now
+          defaultTheme="dark" 
+          enableSystem={false} 
           disableTransitionOnChange
         >
           {children}

@@ -1,74 +1,51 @@
 
 "use client"; 
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
+import { useState } from "react";
 import { BioGeneratorForm } from "@/components/about/bio-generator-form";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { UserCircle2, User, Award, Briefcase, Mail } from "lucide-react";
+import { UserCircle2 } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { MagicalBookPreloader } from "@/components/layout/magical-book-preloader";
-
-// Navigation items for the magical book
-const bookNavItems = [
-  { href: "/", label: "About Me", icon: User },
-  { href: "/achievements", label: "Achievements", icon: Award },
-  { href: "/projects", label: "Projects", icon: Briefcase },
-  { href: "/contact", label: "Contact", icon: Mail },
-];
 
 export default function HomePage() {
   const [currentBio, setCurrentBio] = useState<string>(
     "Welcome to my personal space! I am a passionate individual dedicated to creating impactful solutions and continuously learning new things. Explore my work and achievements to get a better sense of my journey."
   );
-  const [showPreloader, setShowPreloader] = useState(true);
-  const router = useRouter();
 
   const handleBioUpdate = (newBio: string) => {
     setCurrentBio(newBio);
   };
 
-  const handleBookNavigation = (href: string) => {
-    setShowPreloader(false);
-    // If the link is not for the current page (About Me, which is '/'), then navigate.
-    // Otherwise, just revealing the content is enough.
-    if (href !== router.pathname && href !== "/") { // Check current path for more robust logic if HomePage can be other than '/'
-      router.push(href);
-    } else if (href === "/" && router.pathname !== "/") { // Explicitly navigate to home if book says "About Me" but we are not on "/"
-        router.push("/");
-    }
-    // If href is "/" and we are already on "/", setShowPreloader(false) is enough.
-  };
-
-
-  if (showPreloader) {
-    return <MagicalBookPreloader onNavigation={handleBookNavigation} navItems={bookNavItems} />;
-  }
+  // No preloader needed for the new design
+  // if (showPreloader) {
+  //   return <MagicalBookPreloader onNavigation={handleBookNavigation} navItems={bookNavItems} />;
+  // }
 
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1 page-transition">
+        {/* Hero Section */}
+        <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24">
+          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+            <span className="text-primary">Hi, I'm </span>
+            <span className="text-accent">Dhriti Erusalagandi</span>
+          </h1>
+          <p className="mt-6 max-w-3xl text-lg text-muted-foreground sm:text-xl md:text-2xl">
+            I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
+          </p>
+        </section>
+
+        {/* Existing About Me content section */}
         <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
           <section className="mb-12">
-            <div className="py-6 text-center md:py-8">
-              <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
-                Dhriti Erusalagandi
-              </h1>
-              <p className="mt-3 text-lg text-muted-foreground sm:text-xl max-w-3xl mx-auto">
-                I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
-              </p>
-            </div>
-
-            <div className="py-6 md:py-8">
-              <h2 className="mb-4 text-2xl font-semibold text-primary flex items-center">
+             <div className="py-6 md:py-8">
+              <h2 className="mb-4 text-2xl font-semibold text-foreground flex items-center">
                 <UserCircle2 className="mr-3 h-7 w-7" />
                 About Me
               </h2>
-              <div className="prose prose-lg max-w-none text-foreground/90">
+              <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
                 <p>{currentBio}</p>
                 <p>
                   Beyond my professional pursuits, I enjoy [mention a hobby or interest], 
