@@ -1,10 +1,10 @@
 
-"use client"; 
+"use client";
 
 import { useState, useEffect } from "react";
 import { BioGeneratorForm } from "@/components/about/bio-generator-form";
 import { Separator } from "@/components/ui/separator";
-import { UserCircle2 } from "lucide-react";
+import { UserCircle2, ChevronDown } from "lucide-react"; // Added ChevronDown
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 
@@ -31,7 +31,7 @@ export default function HomePage() {
       return () => clearTimeout(timeoutId);
     } else {
       // Optionally stop blinking cursor after typing is complete
-      // setShowCursor(false); 
+      // setShowCursor(false);
     }
   }, [typedTitle, fullTitle]);
 
@@ -45,13 +45,17 @@ export default function HomePage() {
       <main className="flex-1 page-transition">
         {/* Hero Section */}
         <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-primary">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-primary">
             {typedTitle}
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-muted-foreground sm:text-xl md:text-2xl">
             I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
           </p>
+          <div className="mt-12 flex flex-col items-center animate-subtle-blink">
+            <p className="text-sm text-muted-foreground">Scroll down to explore</p>
+            <ChevronDown className="h-6 w-6 text-muted-foreground mt-1" />
+          </div>
         </section>
 
         {/* About Me Details & Bio Generator */}
@@ -64,20 +68,20 @@ export default function HomePage() {
             <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
               <p>{currentBio}</p>
               <p>
-                Beyond my professional pursuits, I enjoy [mention a hobby or interest], 
-                which helps me maintain a fresh perspective and creative drive. I'm always open 
+                Beyond my professional pursuits, I enjoy [mention a hobby or interest],
+                which helps me maintain a fresh perspective and creative drive. I'm always open
                 to new challenges and collaborations that push boundaries and create value.
               </p>
             </div>
           </div>
-        
+
           <Separator className="my-12" />
 
           <div id="bio-generator">
             <BioGeneratorForm onBioGenerated={handleBioUpdate} initialBio={currentBio} />
           </div>
         </div>
-        
+
         {/* Achievements Section */}
         <section id="achievements" className="py-12 md:py-16 bg-muted/20 dark:bg-muted/10">
           <AchievementsSection />

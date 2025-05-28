@@ -144,3 +144,13 @@ body {
   animation: blink 0.7s infinite;
   margin-left: 0.1em; /* Small space before cursor */
 }
+
+/* Subtle blink for scroll prompt */
+@keyframes subtle-blink {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.animate-subtle-blink {
+  animation: subtle-blink 1.5s infinite;
+}
