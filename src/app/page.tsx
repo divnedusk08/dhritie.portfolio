@@ -33,7 +33,11 @@ export default function HomePage() {
         setTypedTitle(fullTitle.substring(0, typedTitle.length + 1));
       }, 100);
     } else {
-      setShowCursor(false); // Hide cursor once typing is complete
+      // Set a timeout to hide the cursor after typing is complete
+      const cursorHideTimeoutId = setTimeout(() => {
+        setShowCursor(false);
+      }, 500); // Hide cursor after 0.5 seconds
+      return () => clearTimeout(cursorHideTimeoutId);
     }
     return () => clearTimeout(typingTimeoutId);
   }, [typedTitle, fullTitle, isLoading]);
@@ -53,7 +57,7 @@ export default function HomePage() {
             {typedTitle}
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
-          <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-foreground/90 text-xl sm:text-2xl md:text-3xl"> {/* Changed to Merriweather */}
+          <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-foreground/90 text-xl sm:text-2xl md:text-3xl">
             I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
           </p>
           <div className="mt-12 flex flex-col items-center animate-subtle-blink">
