@@ -54,34 +54,29 @@ export default function HomePage() {
       <main className="flex-1 page-transition">
         <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
           <section className="mb-12">
-            <Card className="overflow-hidden shadow-xl">
-              <CardHeader className="bg-muted/30 p-6 md:p-8">
-                <div className="flex flex-col items-center text-center gap-2"> {/* Modified classes and removed image */}
-                  <div>
-                    <h1 className="text-3xl font-bold tracking-tight text-primary md:text-4xl">
-                      Dhriti Erusalagandi
-                    </h1>
-                    <p className="mt-1 text-lg text-muted-foreground md:text-xl">
-                      Your Profession / Tagline
-                    </p>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="p-6 md:p-8">
-                <h2 className="mb-4 text-2xl font-semibold text-primary flex items-center">
-                  <UserCircle2 className="mr-3 h-7 w-7" />
-                  About Me
-                </h2>
-                <div className="prose prose-lg max-w-none text-foreground/90">
-                  <p>{currentBio}</p>
-                  <p>
-                    Beyond my professional pursuits, I enjoy [mention a hobby or interest], 
-                    which helps me maintain a fresh perspective and creative drive. I'm always open 
-                    to new challenges and collaborations that push boundaries and create value.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="py-6 text-center md:py-8">
+              <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
+                Dhriti Erusalagandi
+              </h1>
+              <p className="mt-3 text-lg text-muted-foreground sm:text-xl max-w-3xl mx-auto">
+                I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
+              </p>
+            </div>
+
+            <div className="py-6 md:py-8">
+              <h2 className="mb-4 text-2xl font-semibold text-primary flex items-center">
+                <UserCircle2 className="mr-3 h-7 w-7" />
+                About Me
+              </h2>
+              <div className="prose prose-lg max-w-none text-foreground/90">
+                <p>{currentBio}</p>
+                <p>
+                  Beyond my professional pursuits, I enjoy [mention a hobby or interest], 
+                  which helps me maintain a fresh perspective and creative drive. I'm always open 
+                  to new challenges and collaborations that push boundaries and create value.
+                </p>
+              </div>
+            </div>
           </section>
 
           <Separator className="my-12" />
