@@ -5,10 +5,10 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 100 20" // Adjusted viewBox width for "Dhriti"
-      width="100" // Adjusted width for "Dhriti"
+      viewBox="0 0 200 20" // Adjusted viewBox width for "Dhriti Erusalagandi"
+      width="200" // Adjusted width for "Dhriti Erusalagandi"
       height="20"
-      aria-label="Dhriti Logo"
+      aria-label="Dhriti Erusalagandi Logo"
       className="h-5 w-auto" // Height is fixed, width will scale based on viewBox
       {...props}
     >
@@ -20,8 +20,9 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
         fontWeight="bold"
         fill="currentColor"
       >
-        Dhriti
+        Dhriti Erusalagandi
       </text>
     </svg>
   );
 }
+
