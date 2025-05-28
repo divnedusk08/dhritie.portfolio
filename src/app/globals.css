@@ -206,9 +206,9 @@ body {
 .book-cover-content {
   text-align: center;
   color: hsl(var(--primary-foreground));
-  padding: 10px; /* Added padding for text */
-  position: relative; /* For positioning text absolutely if needed */
-  z-index: 1; /* Ensure text is above the image if image is direct child */
+  padding: 10px;
+  position: relative; 
+  z-index: 1; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -219,11 +219,12 @@ body {
 }
 
 .book-title-text {
-  font-size: 1.2rem;
+  font-size: 1.5rem; /* Increased from 1.2rem */
   font-weight: bold;
   margin-bottom: 0.5rem;
   opacity: 1;
   transition: opacity 0.5s ease-out;
+  text-shadow: 0 0 5px hsl(var(--primary-foreground) / 0.5); /* Added a subtle text shadow */
 }
 
 .book-prompt-text {
@@ -279,6 +280,7 @@ body {
   text-align: left;
   width: 100%;
   font-weight: 500;
+  font-size: 1.1rem; /* Increased font size for links */
   transition: background-color 0.2s, transform 0.2s;
   border: 1px solid hsl(var(--border) / 0.5);
 }
@@ -312,8 +314,8 @@ body {
 }
 
 @keyframes book-subtle-rotate {
-  from { transform: rotateY(-5deg); }
-  to { transform: rotateY(5deg); }
+  from { transform: rotateY(-5deg) rotateX(-2deg); } /* Added slight X rotation */
+  to { transform: rotateY(5deg) rotateX(2deg); } /* Added slight X rotation */
 }
 
 @keyframes sparkle-movement {
@@ -381,4 +383,19 @@ body {
     opacity: 0;
     transform: scale(0.9);
   }
+}
+
+/* Adding subtle 3D feel to the levitation */
+@keyframes book-levitate {
+  0%, 100% { transform: translateY(0) rotateZ(-1deg) rotateX(2deg); }
+  50% { transform: translateY(-15px) rotateZ(1deg) rotateX(-2deg); }
+}
+
+/* Enhanced subtle rotation for a more 3D look */
+@keyframes book-subtle-rotate {
+  0% { transform: rotateY(-7deg) rotateX(-3deg); }
+  25% { transform: rotateY(0deg) rotateX(3deg); }
+  50% { transform: rotateY(7deg) rotateX(-3deg); }
+  75% { transform: rotateY(0deg) rotateX(3deg); }
+  100% { transform: rotateY(-7deg) rotateX(-3deg); }
 }
