@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -124,4 +125,46 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Preloader Animations */
+@keyframes wand-fade-in-keyframes {
+  from { opacity: 0; transform: translateY(30px) rotate(-15deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes sparkle-effect-keyframes {
+  0%, 100% { transform: scale(0.8); opacity: 0.7; }
+  50% { transform: scale(1.2) translate(-2px, -2px); opacity: 1; filter: drop-shadow(0 0 8px currentColor); }
+}
+
+@keyframes preloader-fade-out-keyframes {
+  from { opacity: 1; }
+  to { opacity: 0; pointer-events: none; }
+}
+
+.animation-wand-fade-in {
+  animation: wand-fade-in-keyframes 0.5s ease-out forwards;
+}
+
+.animation-sparkle-effect {
+  animation: sparkle-effect-keyframes 1s ease-in-out infinite;
+  /* Delay this animation until the wand is visible */
+  animation-delay: 0.5s; 
+  opacity: 0; /* Start hidden, fade in via animation */
+  animation-fill-mode: forwards; /* Keep last frame */
+}
+/* Sparkle needs to become visible when its animation starts */
+@keyframes sparkle-visibility {
+  0% { opacity: 0; }
+  1% { opacity: 0.7; } /* Corresponds to sparkle-effect-keyframes start */
+  100% { opacity: 0.7; }
+}
+.animation-sparkle-effect {
+  animation: sparkle-effect-keyframes 1s ease-in-out 0.5s infinite, sparkle-visibility 0.01s 0.5s forwards;
+}
+
+
+.animation-preloader-fade-out {
+  animation: preloader-fade-out-keyframes 1s ease-in forwards;
 }
