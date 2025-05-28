@@ -33,7 +33,7 @@ export default function HomePage() {
       // Optionally stop blinking cursor after typing is complete
       // setShowCursor(false); 
     }
-  }, [typedTitle]);
+  }, [typedTitle, fullTitle]);
 
   const handleBioUpdate = (newBio: string) => {
     setCurrentBio(newBio);
@@ -45,7 +45,7 @@ export default function HomePage() {
       <main className="flex-1 page-transition">
         {/* Hero Section */}
         <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24">
-          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl text-primary">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-primary">
             {typedTitle}
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
