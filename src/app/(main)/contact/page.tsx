@@ -1,6 +1,8 @@
+
 "use client";
 
-import { useActionState, useFormStatus } from "react-dom-experimental"; // useActionState is experimental in react-dom for now, but should be react for stable
+import { useActionState } from "react"; // Corrected: useActionState is from "react"
+import { useFormStatus } from "react-dom"; // useFormStatus is from "react-dom"
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactFormSchema, type ContactFormValues } from "@/lib/schemas";
@@ -14,17 +16,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useToast } from "@/hooks/use-toast";
 import { useEffect } from "react";
 import { Loader2, Mail, Send, MessageSquare, User } from "lucide-react";
-
-// For stable React 19, useActionState will be imported directly from "react"
-// For now, with Next.js 15.2.3 and React 18.3.1, useFormState is still from "react-dom"
-// However, the error message suggests a forward-looking change.
-// Let's try importing useActionState from 'react' first as per the error message's intent
-// If that doesn't resolve, we might need to check React versions.
-// Given the error message "ReactDOM.useFormState has been renamed to React.useActionState",
-// the correct import should be from "react".
-
-import { useActionState as useReactActionState } from "react";
-
 
 const initialState = {
   message: "",
@@ -48,7 +39,7 @@ function SubmitButton() {
 }
 
 export default function ContactPage() {
-  const [state, formAction] = useReactActionState(submitContactForm, initialState);
+  const [state, formAction] = useActionState(submitContactForm, initialState);
   const { toast } = useToast();
 
   const form = useForm<ContactFormValues>({
@@ -61,6 +52,13 @@ export default function ContactPage() {
   });
 
   useEffect(() => {
+    // Update form values if the action returns fields (e.g., on validation error)
+    if (state.fields) {
+      form.setValue("name", state.fields.name || "");
+      form.setValue("email", state.fields.email || "");
+      form.setValue("message", state.fields.message || "");
+    }
+
     if (state.message) {
       if (state.success) {
         toast({
@@ -74,15 +72,7 @@ export default function ContactPage() {
           description: state.message || "Failed to send message.",
           variant: "destructive",
         });
-        // Optionally repopulate form if specific field errors were returned
-        if(state.fields){
-          form.setValue("name", state.fields.name || "");
-          form.setValue("email", state.fields.email || "");
-          form.setValue("message", state.fields.message || "");
-        }
         if(state.issues) {
-          // This is a bit simplistic; a full solution would map issues to RHF errors.
-          // For now, just show the general message.
           console.error("Validation issues:", state.issues);
         }
       }
