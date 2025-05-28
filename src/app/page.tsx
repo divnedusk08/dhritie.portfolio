@@ -1,7 +1,7 @@
 
-"use client"; // From src/app/(main)/page.tsx
+"use client"; 
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { BioGeneratorForm } from "@/components/about/bio-generator-form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,15 +9,25 @@ import { Separator } from "@/components/ui/separator";
 import { UserCircle2 } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { Preloader } from "@/components/layout/preloader";
 
 export default function HomePage() {
   const [currentBio, setCurrentBio] = useState<string>(
     "Welcome to my personal space! I am a passionate individual dedicated to creating impactful solutions and continuously learning new things. Explore my work and achievements to get a better sense of my journey."
   );
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleBioUpdate = (newBio: string) => {
     setCurrentBio(newBio);
   };
+
+  const handlePreloaderLoaded = () => {
+    setIsLoading(false);
+  };
+
+  if (isLoading) {
+    return <Preloader onLoaded={handlePreloaderLoaded} />;
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
