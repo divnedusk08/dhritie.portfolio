@@ -10,7 +10,6 @@ import { Separator } from "@/components/ui/separator";
 import { UserCircle2, User, Award, Briefcase, Mail } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-// import { Preloader } from "@/components/layout/preloader"; // Old preloader
 import { MagicalBookPreloader } from "@/components/layout/magical-book-preloader";
 
 // Navigation items for the magical book
@@ -57,15 +56,7 @@ export default function HomePage() {
           <section className="mb-12">
             <Card className="overflow-hidden shadow-xl">
               <CardHeader className="bg-muted/30 p-6 md:p-8">
-                <div className="flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
-                  <Image
-                    src="https://placehold.co/120x120.png"
-                    alt="Dhriti Erusalagandi"
-                    width={120}
-                    height={120}
-                    className="rounded-full border-4 border-primary shadow-md"
-                    data-ai-hint="profile picture"
-                  />
+                <div className="flex flex-col items-center text-center gap-2"> {/* Modified classes and removed image */}
                   <div>
                     <h1 className="text-3xl font-bold tracking-tight text-primary md:text-4xl">
                       Dhriti Erusalagandi
