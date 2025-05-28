@@ -2,10 +2,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ChevronDown, UserCircle2 } from "lucide-react";
+import { ChevronDown, UserCircle2, Code, Brain, Palette } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Preloader } from "@/components/layout/preloader";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Import section components
 import AchievementsSection from "@/app/(main)/achievements/page";
@@ -33,10 +34,9 @@ export default function HomePage() {
         setTypedTitle(fullTitle.substring(0, typedTitle.length + 1));
       }, 100);
     } else {
-      // Set a timeout to hide the cursor after typing is complete
       const cursorHideTimeoutId = setTimeout(() => {
         setShowCursor(false);
-      }, 500); // Hide cursor after 0.5 seconds
+      }, 500); 
       return () => clearTimeout(cursorHideTimeoutId);
     }
     return () => clearTimeout(typingTimeoutId);
@@ -46,6 +46,25 @@ export default function HomePage() {
   if (isLoading) {
     return <Preloader onLoaded={() => setIsLoading(false)} />;
   }
+
+  const areasOfInterest = [
+    {
+      icon: Code,
+      title: "Web Development",
+      description: "Building responsive and engaging web experiences with modern technologies.",
+    },
+    {
+      icon: Palette,
+      title: "Creative Design",
+      description: "Exploring visual design, UI/UX, and bringing ideas to life aesthetically.",
+    },
+    {
+      icon: Brain,
+      title: "Problem Solving",
+      description: "Tackling challenges with analytical thinking and innovative solutions.",
+    },
+     // Add more interests here
+  ];
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -68,23 +87,41 @@ export default function HomePage() {
 
         {/* About Me Details */}
         <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
-          <div className="py-6 md:py-8">
-            <h2 className="mb-2 text-3xl font-bold text-primary flex items-center">
-              <UserCircle2 className="mr-3 h-8 w-8" />
-              About Me
-            </h2>
-            <h3 className="mb-4 text-xl font-semibold text-accent">
-              Who I Am
-            </h3>
-            <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
-              <p>{currentBio}</p>
-              <p>
-                Beyond my professional pursuits, I enjoy [mention a hobby or interest],
-                which helps me maintain a fresh perspective and creative drive. I'm always open
-                to new challenges and collaborations that push boundaries and create value.
-              </p>
-            </div>
-          </div>
+         <Card className="shadow-xl bg-card/50 backdrop-blur-sm">
+            <CardHeader className="text-center">
+              <CardTitle className="text-3xl font-bold text-primary">About Me</CardTitle>
+            </CardHeader>
+            <CardContent className="px-6 py-8 md:px-8">
+              <section className="mb-10">
+                <h3 className="mb-3 text-xl font-semibold text-accent">
+                  Who I Am
+                </h3>
+                <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
+                  <p>{currentBio}</p>
+                  <p>
+                    Beyond my professional pursuits, I enjoy [mention a hobby or interest],
+                    which helps me maintain a fresh perspective and creative drive. I'm always open
+                    to new challenges and collaborations that push boundaries and create value.
+                  </p>
+                </div>
+              </section>
+
+              <section>
+                <h3 className="mb-6 text-xl font-semibold text-accent">
+                  Areas of Interest
+                </h3>
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                  {areasOfInterest.map((interest, index) => (
+                    <div key={index} className="flex flex-col items-center text-center p-4 rounded-lg ">
+                      <interest.icon className="h-12 w-12 mb-3 text-accent" />
+                      <h4 className="mb-1 text-lg font-medium text-foreground">{interest.title}</h4>
+                      <p className="text-sm text-muted-foreground">{interest.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Achievements Section */}

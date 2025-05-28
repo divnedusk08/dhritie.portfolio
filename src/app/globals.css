@@ -60,51 +60,51 @@ body {
     --sidebar-ring: 22 86% 66%;
   }
 
-  /* Dark theme with blue primary and orange accents */
+ /* Dark theme with purpleish primary and pinkish accent */
   .dark {
-    --background: 230 15% 8%; /* Very Dark Desaturated Blue */
-    --foreground: 0 0% 95%;   /* Off-white */
+    --background: 225 15% 8%; /* Very Dark Desaturated Blue */
+    --foreground: 210 20% 95%;   /* Off-white */
 
-    --muted: 230 15% 20%;
-    --muted-foreground: 0 0% 65%; /* Lighter muted text */
+    --muted: 225 15% 20%;
+    --muted-foreground: 210 10% 65%; /* Lighter muted text */
 
-    --popover: 230 15% 10%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 225 15% 10%;
+    --popover-foreground: 210 20% 95%;
 
-    --card: 230 15% 12%;
-    --card-foreground: 0 0% 95%;
+    --card: 225 15% 12%;
+    --card-foreground: 210 20% 95%;
 
-    --border: 230 10% 25%; /* Slightly lighter border */
-    --input: 230 10% 22%;  /* Slightly lighter input */
+    --border: 225 10% 25%; /* Slightly lighter border */
+    --input: 225 10% 22%;  /* Slightly lighter input */
 
-    --primary: 220 80% 60%; /* Blue */
-    --primary-foreground: 0 0% 95%; /* Off-white for good contrast on blue */
+    --primary: 210 70% 55%; /* Blue */
+    --primary-foreground: 210 20% 95%; /* Off-white for Blue */
+    
+    --secondary: 260 70% 55%; /* Darker Purpleish */
+    --secondary-foreground: 260 70% 95%;
 
-    --secondary: 220 80% 60%; /* Example: Blue for a potential action button */
-    --secondary-foreground: 0 0% 95%;
-
-    --accent: 30 90% 55%;   /* Vibrant Orange */
-    --accent-foreground: 30 90% 10%; /* Dark text for on orange bg */
+    --accent: 22 86% 66%; /* #F0935F Muted orange */
+    --accent-foreground: 22 85% 10%; /* Dark text for accent elements */
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --ring: 220 80% 60%; /* Blue for focus rings */
+    --ring: 260 70% 65%; /* Purpleish for focus rings */
 
-    --chart-1: 220 80% 60%; /* Blue */
-    --chart-2: 30 90% 55%; /* Orange */
-    --chart-3: 230 15% 50%; /* A different supporting color */
-    --chart-4: 230 15% 40%;
-    --chart-5: 0 0% 95%;
+    --chart-1: 260 70% 65%; /* Purpleish */
+    --chart-2: 22 86% 66%; /* #F0935F Muted orange */
+    --chart-3: 225 15% 50%; /* A different supporting color */
+    --chart-4: 225 15% 40%;
+    --chart-5: 210 20% 95%;
 
-    --sidebar-background: 230 15% 10%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 220 80% 60%;
-    --sidebar-primary-foreground: 0 0% 95%;
-    --sidebar-accent: 30 90% 55%;
-    --sidebar-accent-foreground: 30 90% 10%;
-    --sidebar-border: 230 10% 20%;
-    --sidebar-ring: 220 80% 60%;
+    --sidebar-background: 225 15% 10%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 260 70% 65%;
+    --sidebar-primary-foreground: 260 70% 95%;
+    --sidebar-accent: 330 85% 60%;
+    --sidebar-accent-foreground: 330 85% 15%;
+    --sidebar-border: 225 10% 20%;
+    --sidebar-ring: 260 70% 65%;
   }
 }
 
@@ -196,8 +196,6 @@ body {
 
 .click-prompt-inline {
   color: #f0b90b; /* A bright yellow/gold for prompt */
-  /* font-size: 1.1rem; /* Kept relative to parent, but can be adjusted if needed */
   animation: subtle-blink 1.8s infinite;
   white-space: nowrap;
-  /* margin-left: -1.5ch; Ensure alignment if needed, might depend on line number width */
 }
