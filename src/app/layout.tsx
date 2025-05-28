@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 import { Geist } from 'next/font/google';
-import { Love_Ya_Like_A_Sister } from 'next/font/google'; // Added Love Ya Like A Sister
+import { Merriweather } from 'next/font/google'; // Changed from Love Ya Like A Sister to Merriweather
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -10,10 +10,10 @@ const geistSans = Geist({
   subsets: ['latin'],
 });
 
-const loveYaLikeASister = Love_Ya_Like_A_Sister({ // Configured Love Ya Like A Sister
-  variable: '--font-love-ya-like-a-sister',
+const merriweather = Merriweather({ // Configured Merriweather
+  variable: '--font-merriweather',
   subsets: ['latin'],
-  weight: ['400'], // Love Ya Like A Sister typically has one weight
+  weight: ['400', '700'], // Merriweather supports various weights, added 400 and 700
 });
 
 export const metadata: Metadata = {
@@ -28,11 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${loveYaLikeASister.variable} font-sans antialiased`}> {/* Added loveYaLikeASister variable */}
+      <body className={`${geistSans.variable} ${merriweather.variable} font-sans antialiased`}> {/* Added merriweather variable */}
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark" 
-          enableSystem={false} 
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { ChevronDown, UserCircle2 } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { Preloader } from "@/components/layout/preloader"; 
+import { Preloader } from "@/components/layout/preloader";
 
 // Import section components
 import AchievementsSection from "@/app/(main)/achievements/page";
@@ -19,19 +19,19 @@ export default function HomePage() {
     "Welcome to my personal space! I am a passionate individual dedicated to creating impactful solutions and continuously learning new things. Explore my work and achievements to get a better sense of my journey."
   );
 
-  const fullTitle = "Hi, I'm Dhriti"; 
+  const fullTitle = "Hi, I'm Dhriti";
   const [typedTitle, setTypedTitle] = useState("");
   const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
-    if (isLoading) return; 
+    if (isLoading) return;
 
     let typingTimeoutId: NodeJS.Timeout;
     if (typedTitle.length < fullTitle.length) {
-      setShowCursor(true); 
+      setShowCursor(true);
       typingTimeoutId = setTimeout(() => {
         setTypedTitle(fullTitle.substring(0, typedTitle.length + 1));
-      }, 100); 
+      }, 100);
     } else {
       setShowCursor(false); // Hide cursor once typing is complete
     }
@@ -53,7 +53,7 @@ export default function HomePage() {
             {typedTitle}
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
-          <p className="mt-8 max-w-3xl font-[var(--font-love-ya-like-a-sister)] text-foreground/90 text-xl sm:text-2xl md:text-3xl">
+          <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-foreground/90 text-xl sm:text-2xl md:text-3xl"> {/* Changed to Merriweather */}
             I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
           </p>
           <div className="mt-12 flex flex-col items-center animate-subtle-blink">
