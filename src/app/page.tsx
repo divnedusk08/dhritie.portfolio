@@ -19,7 +19,7 @@ export default function HomePage() {
     "Welcome to my personal space! I am a passionate individual dedicated to creating impactful solutions and continuously learning new things. Explore my work and achievements to get a better sense of my journey."
   );
 
-  const fullTitle = "Hi, I'm Dhriti";
+  const fullTitle = "Hi, I'm Dhriti Erusalagandi";
   const [typedTitle, setTypedTitle] = useState("");
   const [showCursor, setShowCursor] = useState(true);
 
@@ -53,11 +53,11 @@ export default function HomePage() {
       <main className="flex-1 page-transition">
         {/* Hero Section */}
         <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24 bg-background text-primary">
-          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
+          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl text-primary">
             {typedTitle}
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
-          <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-foreground/90 text-xl sm:text-2xl md:text-3xl">
+          <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-foreground/90 text-[9px]">
             I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
           </p>
           <div className="mt-12 flex flex-col items-center animate-subtle-blink">
