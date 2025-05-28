@@ -9,47 +9,75 @@ interface PreloaderProps {
 }
 
 const codeLineText = 'print("Hi, I\'m Dhriti")';
-const promptText = "# Click anywhere to continue..."; // Added space after #
+const promptText = "# Click anywhere to continue...";
 
 export function Preloader({ onLoaded }: PreloaderProps) {
   const [isVisible, setIsVisible] = useState(true);
+
+  // State for line 1
   const [typedCode, setTypedCode] = useState<string>('');
   const [charIndex, setCharIndex] = useState(0);
-  const [isTypingDone, setIsTypingDone] = useState(false);
-  const [showPromptLine, setShowPromptLine] = useState(false);
-  const [canClickToContinue, setCanClickToContinue] = useState(false);
+  const [isLine1TypingComplete, setIsLine1TypingComplete] = useState(false);
 
-  // Effect for typing animation
+  // State for line 2
+  const [typedPrompt, setTypedPrompt] = useState<string>('');
+  const [promptCharIndex, setPromptCharIndex] = useState(0);
+  const [isLine2TypingComplete, setIsLine2TypingComplete] = useState(false);
+  const [showLine2, setShowLine2] = useState(false);
+
+  // Shared state
+  const [canClickToContinue, setCanClickToContinue] = useState(false);
+  const [activeCursor, setActiveCursor] = useState<'line1' | 'line2' | null>('line1');
+
+
+  // Effect for typing line 1
   useEffect(() => {
+    if (isLine1TypingComplete) return;
+
     if (charIndex < codeLineText.length) {
+      setActiveCursor('line1');
       const typingTimer = setTimeout(() => {
         setTypedCode((prev) => prev + codeLineText[charIndex]);
         setCharIndex((prev) => prev + 1);
-      }, 80); // Adjust typing speed (ms)
+      }, 80);
       return () => clearTimeout(typingTimer);
-    } else if (!isTypingDone) { 
-      // This block runs once when charIndex reaches codeLineText.length
-      setIsTypingDone(true);
+    } else {
+      setIsLine1TypingComplete(true);
+      setActiveCursor(null); 
     }
-  }, [charIndex, isTypingDone, codeLineText.length]);
+  }, [charIndex, isLine1TypingComplete]);
 
-  // Effect for showing prompt after typing is done
+  // Effect for initiating line 2 display and typing
   useEffect(() => {
-    if (isTypingDone && !showPromptLine) { 
-      // Only run if typing is done and prompt isn't shown yet
-      const promptTimer = setTimeout(() => {
-        setShowPromptLine(true);
-        setCanClickToContinue(true);
-      }, 500); // Delay before showing click prompt line
-      return () => clearTimeout(promptTimer);
+    if (isLine1TypingComplete && !showLine2) {
+      const line2AppearTimer = setTimeout(() => {
+          setShowLine2(true);
+          setActiveCursor('line2'); 
+      }, 100); 
+      return () => clearTimeout(line2AppearTimer);
     }
-  }, [isTypingDone, showPromptLine]);
+
+    if (showLine2 && !isLine2TypingComplete) {
+      if (promptCharIndex < promptText.length) {
+        setActiveCursor('line2');
+        const typingTimer = setTimeout(() => {
+          setTypedPrompt((prev) => prev + promptText[promptCharIndex]);
+          setPromptCharIndex((prev) => prev + 1);
+        }, 80); 
+        return () => clearTimeout(typingTimer);
+      } else {
+        setIsLine2TypingComplete(true);
+        setActiveCursor('line2'); 
+        setCanClickToContinue(true);
+      }
+    }
+  }, [isLine1TypingComplete, showLine2, promptCharIndex, isLine2TypingComplete]);
+
 
   const handleClick = () => {
     if (canClickToContinue) {
       setIsVisible(false);
-      // Delay for fade-out animation before calling onLoaded
-      setTimeout(onLoaded, 300); // Matches fade-out duration
+      setTimeout(onLoaded, 300); 
     }
   };
 
@@ -69,14 +97,15 @@ export function Preloader({ onLoaded }: PreloaderProps) {
           <span className="line-number">1</span>
           <span>
             {typedCode}
-            {!isTypingDone && <span className="typewriter-cursor">_</span>}
+            {activeCursor === 'line1' && <span className="typewriter-cursor">_</span>}
           </span>
         </div>
-        {showPromptLine && (
+        {showLine2 && (
           <div className="code-line">
             <span className="line-number">2</span>
             <span className="click-prompt-inline">
-              {promptText}
+              {typedPrompt}
+              {activeCursor === 'line2' && <span className="typewriter-cursor">_</span>}
             </span>
           </div>
         )}
