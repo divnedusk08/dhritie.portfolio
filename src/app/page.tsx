@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ChevronDown, UserCircle2, Code, Brain, Palette } from "lucide-react";
+import { ChevronDown, UserCircle2, Code, Brain, Palette, Lightbulb } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Preloader } from "@/components/layout/preloader";
@@ -63,7 +63,11 @@ export default function HomePage() {
       title: "Problem Solving",
       description: "Tackling challenges with analytical thinking and innovative solutions.",
     },
-     // Add more interests here
+    {
+      icon: Lightbulb,
+      title: "Entrepreneurship",
+      description: "Developing innovative ideas and turning them into impactful ventures.",
+    },
   ];
 
   return (
