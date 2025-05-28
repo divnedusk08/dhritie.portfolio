@@ -26,7 +26,7 @@ export default function HomePage() {
   };
 
   if (isLoading) {
-    return <Preloader onLoaded={handlePreloaderLoaded} />;
+    return <Preloader onLoaded={handlePreloaderLoaded} textToShow="Dhriti Erusalagandi" />;
   }
 
   return (
