@@ -2,9 +2,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BioGeneratorForm } from "@/components/about/bio-generator-form";
+// import { BioGeneratorForm } from "@/components/about/bio-generator-form"; // Removed
 import { Separator } from "@/components/ui/separator";
-import { UserCircle2, ChevronDown } from "lucide-react"; // Added ChevronDown
+import { UserCircle2, ChevronDown } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 
@@ -35,6 +35,8 @@ export default function HomePage() {
     }
   }, [typedTitle, fullTitle]);
 
+  // This function can be kept if there are other ways to update the bio in the future,
+  // or removed if bio is static. For now, let's keep it.
   const handleBioUpdate = (newBio: string) => {
     setCurrentBio(newBio);
   };
@@ -58,7 +60,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* About Me Details & Bio Generator */}
+        {/* About Me Details */}
         <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
           <div className="py-6 md:py-8">
             <h2 className="mb-4 text-2xl font-semibold text-primary flex items-center">
@@ -75,11 +77,13 @@ export default function HomePage() {
             </div>
           </div>
 
-          <Separator className="my-12" />
+          {/* Separator can be removed if there's no section below it in this container, or kept for visual separation */}
+          {/* <Separator className="my-12" /> */}
 
-          <div id="bio-generator">
+          {/* Bio Generator Section Removed */}
+          {/* <div id="bio-generator">
             <BioGeneratorForm onBioGenerated={handleBioUpdate} initialBio={currentBio} />
-          </div>
+          </div> */}
         </div>
 
         {/* Achievements Section */}
