@@ -54,11 +54,6 @@ export default function HomePage() {
       description: "Building responsive and engaging web experiences with modern technologies.",
     },
     {
-      icon: Palette,
-      title: "Creative Design",
-      description: "Exploring visual design, UI/UX, and bringing ideas to life aesthetically.",
-    },
-    {
       icon: Brain,
       title: "Problem Solving",
       description: "Tackling challenges with analytical thinking and innovative solutions.",
