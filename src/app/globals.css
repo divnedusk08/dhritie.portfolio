@@ -60,7 +60,7 @@ body {
     --sidebar-ring: 22 86% 66%;
   }
 
-  /* Dark theme with blue primary and pinkish accents */
+  /* Dark theme with blue primary and orange accents */
   .dark {
     --background: 230 15% 8%; /* Very Dark Desaturated Blue */
     --foreground: 0 0% 95%;   /* Off-white */
@@ -83,8 +83,8 @@ body {
     --secondary: 220 80% 60%; /* Example: Blue for a potential action button */
     --secondary-foreground: 0 0% 95%;
 
-    --accent: 320 85% 70%;   /* Pink (e.g., Vibrant Pink/Magenta) */
-    --accent-foreground: 320 85% 10%; /* Dark text for on pink bg if needed */
+    --accent: 30 90% 55%;   /* Vibrant Orange */
+    --accent-foreground: 30 90% 10%; /* Dark text for on orange bg */
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 98%;
@@ -92,7 +92,7 @@ body {
     --ring: 220 80% 60%; /* Blue for focus rings */
 
     --chart-1: 220 80% 60%; /* Blue */
-    --chart-2: 320 85% 70%; /* Pink */
+    --chart-2: 30 90% 55%; /* Orange */
     --chart-3: 230 15% 50%; /* A different supporting color */
     --chart-4: 230 15% 40%;
     --chart-5: 0 0% 95%;
@@ -101,8 +101,8 @@ body {
     --sidebar-foreground: 0 0% 95%;
     --sidebar-primary: 220 80% 60%;
     --sidebar-primary-foreground: 0 0% 95%;
-    --sidebar-accent: 320 85% 70%;
-    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-accent: 30 90% 55%;
+    --sidebar-accent-foreground: 30 90% 10%;
     --sidebar-border: 230 10% 20%;
     --sidebar-ring: 220 80% 60%;
   }
