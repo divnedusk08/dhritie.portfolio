@@ -153,10 +153,17 @@ body {
 
 .book-container {
   position: relative;
-  width: 300px; /* Adjust as needed */
-  height: 400px; /* Adjust as needed */
+  width: 300px; 
+  height: 400px; 
   cursor: pointer;
   transform-style: preserve-3d;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.book-container-hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .book {
@@ -170,7 +177,7 @@ body {
 }
 
 .book-is-open .book {
-  transform: scale(1.1); /* Slightly larger when open */
+  transform: scale(1.1); 
 }
 
 .book-cover {
@@ -179,43 +186,79 @@ body {
   height: 100%;
   background: linear-gradient(145deg, hsl(var(--primary) / 0.9), hsl(var(--primary) / 0.7));
   border: 2px solid hsl(var(--primary-foreground) / 0.3);
-  border-radius: 8px 2px 2px 8px; /* Typical book cover shape */
+  border-radius: 8px 2px 2px 8px; 
   transform-origin: left center;
-  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Swing open effect */
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
   box-shadow: 5px 5px 15px rgba(0,0,0,0.3), inset 0 0 10px hsl(var(--primary) / 0.5);
-  backface-visibility: hidden; /* Hide back when closed */
+  backface-visibility: hidden; 
   z-index: 10;
+  overflow: hidden; /* Ensure image respects border radius */
 }
 
 .book-is-open .book-cover {
-  transform: rotateY(-150deg); /* Open the cover wide */
+  transform: rotateY(-150deg); 
 }
 
 .book-cover-content {
   text-align: center;
+  color: hsl(var(--primary-foreground));
+  padding: 10px; /* Added padding for text */
+  position: relative; /* For positioning text absolutely if needed */
+  z-index: 1; /* Ensure text is above the image if image is direct child */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3); /* Slight dark overlay for text readability over image */
+}
+
+.book-title-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.book-prompt-text {
+  font-size: 0.9rem;
+  opacity: 0; /* Initially hidden, will be animated in */
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.book-title-fading {
+  opacity: 0;
+}
+
+.book-prompt-blinking {
+  opacity: 1; /* Ensure it's visible to blink */
+  animation-name: blink-effect;
 }
 
 .book-pages-container {
   position: absolute;
   top: 0;
-  left: 0; /* Start hidden behind cover */
+  left: 0; 
   width: 100%;
   height: 100%;
   background: hsl(var(--card));
-  border-radius: 2px 8px 8px 2px; /* Inner pages edge */
+  border-radius: 2px 8px 8px 2px; 
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 15px;
   opacity: 0;
-  transform: rotateY(20deg) translateX(10px); /* Slightly angled as if inside */
-  transition: opacity 0.5s 0.4s ease-out, transform 0.5s 0.4s ease-out; /* Delay to match cover opening */
+  transform: rotateY(20deg) translateX(10px); 
+  transition: opacity 0.5s 0.4s ease-out, transform 0.5s 0.4s ease-out; 
   z-index: 5;
   overflow-y: auto;
   box-shadow: inset 3px 0 10px rgba(0,0,0,0.1);
@@ -260,7 +303,7 @@ body {
   box-shadow: 0 0 8px 3px rgba(255, 223, 100, 0.7);
   opacity: 0;
   animation: sparkle-movement 2s infinite ease-in-out;
-  pointer-events: none; /* So they don't interfere with clicks */
+  pointer-events: none; 
 }
 
 @keyframes book-levitate {
@@ -284,6 +327,58 @@ body {
 }
 
 @keyframes book-zoom-out-effect {
-  0% { transform: scale(1.1) opacity(1); } /* Start from slightly zoomed if open */
+  0% { transform: scale(1.1) opacity(1); } 
   100% { transform: scale(2.5) opacity(0); }
+}
+
+/* Fullscreen prompt styles */
+.fullscreen-prompt-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(var(--background)); /* Or a dark color matching preloader theme */
+  z-index: 110; /* Above initial book if needed */
+  cursor: pointer;
+  opacity: 0; /* Start hidden */
+  animation: fade-in-fullscreen-prompt 0.5s ease-out forwards;
+}
+
+@keyframes fade-in-fullscreen-prompt {
+  to {
+    opacity: 1;
+  }
+}
+
+.fullscreen-prompt-text {
+  font-size: 2.5rem; /* Increased size */
+  color: hsl(var(--primary));
+  font-weight: 300; /* Lighter weight */
+  text-align: center;
+  padding: 20px;
+  letter-spacing: 0.075em; /* Added letter spacing */
+  text-transform: lowercase; /* Kept lowercase for a softer feel */
+}
+
+/* Blinking animation */
+.animation-blink {
+  animation: blink-effect 1.5s linear infinite;
+}
+
+@keyframes blink-effect {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Initial book fade out animation */
+.animation-initial-book-fade-out {
+  animation: initial-book-fade-out-effect 0.5s ease-out forwards;
+}
+@keyframes initial-book-fade-out-effect {
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
 }
