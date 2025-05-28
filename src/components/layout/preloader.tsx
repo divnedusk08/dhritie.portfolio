@@ -9,7 +9,7 @@ interface PreloaderProps {
 }
 
 const codeLineText = 'print("Hi, I\'m Dhriti")';
-const promptText = "#Click anywhere to continue...";
+const promptText = "# Click anywhere to continue..."; // Added space after #
 
 export function Preloader({ onLoaded }: PreloaderProps) {
   const [isVisible, setIsVisible] = useState(true);

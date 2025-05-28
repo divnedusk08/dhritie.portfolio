@@ -19,11 +19,13 @@ export default function HomePage() {
     "Welcome to my personal space! I am a passionate individual dedicated to creating impactful solutions and continuously learning new things. Explore my work and achievements to get a better sense of my journey."
   );
 
-  const fullTitle = "Hi, I'm Dhriti Erusalagandi";
+  const fullTitle = "Hi, I'm Dhriti"; // Changed title
   const [typedTitle, setTypedTitle] = useState("");
   const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
+    if (isLoading) return; // Don't start typing until preloader is done
+
     if (typedTitle.length < fullTitle.length) {
       const timeoutId = setTimeout(() => {
         setTypedTitle(fullTitle.substring(0, typedTitle.length + 1));
@@ -34,7 +36,7 @@ export default function HomePage() {
        // const cursorTimeout = setTimeout(() => setShowCursor(false), 1000);
        // return () => clearTimeout(cursorTimeout);
     }
-  }, [typedTitle, fullTitle]);
+  }, [typedTitle, fullTitle, isLoading]);
 
   if (isLoading) {
     return <Preloader onLoaded={() => setIsLoading(false)} />;
@@ -49,7 +51,8 @@ export default function HomePage() {
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
             <span className="text-primary">{typedTitle.substring(0, 7)}</span> 
             <span className="text-accent">{typedTitle.substring(7)}</span>
-            {showCursor && <span className="typewriter-cursor">|</span>}
+            {showCursor && typedTitle.length === fullTitle.length && <span className="typewriter-cursor">|</span>}
+            {typedTitle.length < fullTitle.length && <span className="typewriter-cursor">|</span>}
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-muted-foreground sm:text-xl md:text-2xl">
             I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
