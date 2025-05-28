@@ -1,8 +1,8 @@
 
 "use client";
 
-import { useActionState } from "react"; // Corrected: useActionState is from "react"
-import { useFormStatus } from "react-dom"; // useFormStatus is from "react-dom"
+import { useActionState, useEffect } from "react";
+import { useFormStatus } from "react-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactFormSchema, type ContactFormValues } from "@/lib/schemas";
@@ -14,7 +14,6 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { useEffect } from "react";
 import { Loader2, Mail, Send, MessageSquare, User } from "lucide-react";
 
 const initialState = {
@@ -38,7 +37,7 @@ function SubmitButton() {
   );
 }
 
-export default function ContactPage() {
+export default function ContactSection() {
   const [state, formAction] = useActionState(submitContactForm, initialState);
   const { toast } = useToast();
 
@@ -52,7 +51,6 @@ export default function ContactPage() {
   });
 
   useEffect(() => {
-    // Update form values if the action returns fields (e.g., on validation error)
     if (state.fields) {
       form.setValue("name", state.fields.name || "");
       form.setValue("email", state.fields.email || "");
@@ -65,7 +63,7 @@ export default function ContactPage() {
           title: "Success!",
           description: state.message,
         });
-        form.reset({ name: "", email: "", message: "" }); // Reset form on successful submission
+        form.reset({ name: "", email: "", message: "" });
       } else {
         toast({
           title: "Error",
@@ -82,9 +80,9 @@ export default function ContactPage() {
   return (
     <div className="container mx-auto max-w-3xl py-8 px-4 md:py-12">
       <header className="mb-10 text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
+        <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
           Get In Touch
-        </h1>
+        </h2>
         <p className="mt-3 text-lg text-muted-foreground sm:text-xl">
           Have a question or want to work together? Feel free to reach out.
         </p>

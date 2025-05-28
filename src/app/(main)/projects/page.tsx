@@ -1,3 +1,4 @@
+
 import { ProjectCard, type Project } from "@/components/projects/project-card";
 
 const projectsData: Project[] = [
@@ -60,13 +61,13 @@ const projectsData: Project[] = [
   },
 ];
 
-export default function ProjectsPage() {
+export default function ProjectsSection() {
   return (
     <div className="container mx-auto max-w-7xl py-8 px-4 md:py-12">
       <header className="mb-10 text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
+        <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
           My Projects
-        </h1>
+        </h2>
         <p className="mt-3 text-lg text-muted-foreground sm:text-xl">
           A collection of my work, demonstrating my skills and passion.
         </p>

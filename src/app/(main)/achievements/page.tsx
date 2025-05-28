@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Award, Briefcase, CalendarDays, CheckCircle, Star } from "lucide-react";
 
@@ -50,13 +51,13 @@ const achievementsData: Achievement[] = [
   },
 ];
 
-export default function AchievementsPage() {
+export default function AchievementsSection() {
   return (
     <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
       <header className="mb-10 text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
+        <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
           My Achievements
-        </h1>
+        </h2>
         <p className="mt-3 text-lg text-muted-foreground sm:text-xl">
           A showcase of my awards, certifications, and recognitions.
         </p>
