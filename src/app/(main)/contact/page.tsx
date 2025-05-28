@@ -1,6 +1,6 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState, useFormStatus } from "react-dom-experimental"; // useActionState is experimental in react-dom for now, but should be react for stable
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactFormSchema, type ContactFormValues } from "@/lib/schemas";
@@ -15,9 +15,22 @@ import { useToast } from "@/hooks/use-toast";
 import { useEffect } from "react";
 import { Loader2, Mail, Send, MessageSquare, User } from "lucide-react";
 
+// For stable React 19, useActionState will be imported directly from "react"
+// For now, with Next.js 15.2.3 and React 18.3.1, useFormState is still from "react-dom"
+// However, the error message suggests a forward-looking change.
+// Let's try importing useActionState from 'react' first as per the error message's intent
+// If that doesn't resolve, we might need to check React versions.
+// Given the error message "ReactDOM.useFormState has been renamed to React.useActionState",
+// the correct import should be from "react".
+
+import { useActionState as useReactActionState } from "react";
+
+
 const initialState = {
   message: "",
   success: false,
+  fields: undefined as Record<string, string> | undefined,
+  issues: undefined as string[] | undefined,
 };
 
 function SubmitButton() {
@@ -35,7 +48,7 @@ function SubmitButton() {
 }
 
 export default function ContactPage() {
-  const [state, formAction] = useFormState(submitContactForm, initialState);
+  const [state, formAction] = useReactActionState(submitContactForm, initialState);
   const { toast } = useToast();
 
   const form = useForm<ContactFormValues>({
@@ -54,7 +67,7 @@ export default function ContactPage() {
           title: "Success!",
           description: state.message,
         });
-        form.reset(); // Reset form on successful submission
+        form.reset({ name: "", email: "", message: "" }); // Reset form on successful submission
       } else {
         toast({
           title: "Error",

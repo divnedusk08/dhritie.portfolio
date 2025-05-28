@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { ContactFormSchema } from "./schemas";
 
-type ContactFormState = {
+export type ContactFormState = {
   message: string;
   fields?: Record<string, string>;
   issues?: string[];
@@ -11,16 +11,22 @@ type ContactFormState = {
 };
 
 export async function submitContactForm(
-  prevState: ContactFormState,
+  prevState: ContactFormState, // prevState is not directly used for mutation here, but good practice for action signature
   data: FormData
 ): Promise<ContactFormState> {
   const formData = Object.fromEntries(data);
   const parsed = ContactFormSchema.safeParse(formData);
 
   if (!parsed.success) {
+    const fieldErrors: Record<string, string> = {};
+    parsed.error.issues.forEach(issue => {
+      if (issue.path.length > 0) {
+        fieldErrors[issue.path[0] as string] = issue.message;
+      }
+    });
     return {
-      message: "Invalid form data",
-      fields: formData as Record<string, string>,
+      message: "Invalid form data. Please check the fields below.",
+      fields: formData as Record<string, string>, // Return submitted data to repopulate
       issues: parsed.error.issues.map((issue) => issue.message),
       success: false,
     };
@@ -39,6 +45,7 @@ export async function submitContactForm(
   // if (Math.random() < 0.1) {
   //   return {
   //     message: "Failed to send message due to a server error. Please try again later.",
+  //     fields: parsed.data, // Return parsed data in case of server error after validation
   //     success: false,
   //   };
   // }
@@ -46,5 +53,7 @@ export async function submitContactForm(
   return {
     message: `Thank you, ${parsed.data.name}! Your message has been received. I'll get back to you soon.`,
     success: true,
+    fields: undefined, // Clear fields on success
+    issues: undefined, // Clear issues on success
   };
 }
