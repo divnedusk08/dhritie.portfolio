@@ -31,10 +31,10 @@ export function Preloader({ onLoaded, duration = 2500 }: PreloaderProps) {
       aria-hidden={!isVisible}
       data-testid="preloader"
     >
-      <div className="preloader-title-container">
-        <h1 className="preloader-title-text">
-          Dhriti Erusalagandi
-        </h1>
+      <div className="pulsing-dots-container">
+        <div className="pulsing-dot"></div>
+        <div className="pulsing-dot"></div>
+        <div className="pulsing-dot"></div>
       </div>
     </div>
   );
