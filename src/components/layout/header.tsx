@@ -88,7 +88,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
-        <Link href="/#about" className="flex items-center space-x-2" aria-label="Dhriti Erusalagandi Home">
+        <Link href="/#about" className="flex items-center space-x-2 ml-4" aria-label="Dhriti Home">
           <Logo />
         </Link>
         
@@ -107,7 +107,7 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] p-6">
-              <Link href="/#about" className="mb-6 flex items-center" aria-label="Dhriti Erusalagandi Home" onClick={() => setIsSheetOpen(false)}>
+              <Link href="/#about" className="mb-6 flex items-center" aria-label="Dhriti Home" onClick={() => setIsSheetOpen(false)}>
                 <Logo />
               </Link>
               <div className="flex flex-col space-y-3">
