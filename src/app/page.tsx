@@ -2,11 +2,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-// import { BioGeneratorForm } from "@/components/about/bio-generator-form"; // Removed
-import { Separator } from "@/components/ui/separator";
-import { UserCircle2, ChevronDown } from "lucide-react";
+import { ChevronDown, UserCircle2 } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { Preloader } from "@/components/layout/preloader"; // Import Preloader
 
 // Import section components
 import AchievementsSection from "@/app/(main)/achievements/page";
@@ -15,6 +14,7 @@ import ContactSection from "@/app/(main)/contact/page";
 
 
 export default function HomePage() {
+  const [isLoading, setIsLoading] = useState(true); // Preloader state
   const [currentBio, setCurrentBio] = useState<string>(
     "Welcome to my personal space! I am a passionate individual dedicated to creating impactful solutions and continuously learning new things. Explore my work and achievements to get a better sense of my journey."
   );
@@ -29,17 +29,12 @@ export default function HomePage() {
         setTypedTitle(fullTitle.substring(0, typedTitle.length + 1));
       }, 100); // Adjust typing speed here (milliseconds)
       return () => clearTimeout(timeoutId);
-    } else {
-      // Optionally stop blinking cursor after typing is complete
-      // setShowCursor(false);
     }
   }, [typedTitle, fullTitle]);
 
-  // This function can be kept if there are other ways to update the bio in the future,
-  // or removed if bio is static. For now, let's keep it.
-  const handleBioUpdate = (newBio: string) => {
-    setCurrentBio(newBio);
-  };
+  if (isLoading) {
+    return <Preloader onLoaded={() => setIsLoading(false)} duration={2500} />;
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -47,7 +42,7 @@ export default function HomePage() {
       <main className="flex-1 page-transition">
         {/* Hero Section */}
         <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-primary">
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-primary">
             {typedTitle}
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
@@ -76,14 +71,6 @@ export default function HomePage() {
               </p>
             </div>
           </div>
-
-          {/* Separator can be removed if there's no section below it in this container, or kept for visual separation */}
-          {/* <Separator className="my-12" /> */}
-
-          {/* Bio Generator Section Removed */}
-          {/* <div id="bio-generator">
-            <BioGeneratorForm onBioGenerated={handleBioUpdate} initialBio={currentBio} />
-          </div> */}
         </div>
 
         {/* Achievements Section */}
