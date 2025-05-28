@@ -52,12 +52,12 @@ export default function HomePage() {
       <Header />
       <main className="flex-1 page-transition">
         {/* Hero Section */}
-        <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24 bg-background text-primary">
+        <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24 bg-background">
           <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl text-primary">
             {typedTitle}
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
-          <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-[20px] text-foreground/90"> {/* Changed font size to 20px */}
+          <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-[20px] text-foreground/90">
             I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
           </p>
           <div className="mt-12 flex flex-col items-center animate-subtle-blink">
@@ -69,10 +69,13 @@ export default function HomePage() {
         {/* About Me Details */}
         <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
           <div className="py-6 md:py-8">
-            <h2 className="mb-4 text-2xl font-semibold text-primary flex items-center">
-              <UserCircle2 className="mr-3 h-7 w-7" />
+            <h2 className="mb-2 text-3xl font-bold text-primary flex items-center">
+              <UserCircle2 className="mr-3 h-8 w-8" />
               About Me
             </h2>
+            <h3 className="mb-4 text-xl font-semibold text-accent">
+              Who I Am
+            </h3>
             <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
               <p>{currentBio}</p>
               <p>
@@ -104,4 +107,3 @@ export default function HomePage() {
     </div>
   );
 }
-
