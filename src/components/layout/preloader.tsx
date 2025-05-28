@@ -19,22 +19,31 @@ export function Preloader({ onLoaded }: PreloaderProps) {
   const [showPromptLine, setShowPromptLine] = useState(false);
   const [canClickToContinue, setCanClickToContinue] = useState(false);
 
+  // Effect for typing animation
   useEffect(() => {
-    if (!isTypingDone && charIndex < codeLineText.length) {
+    if (charIndex < codeLineText.length) {
       const typingTimer = setTimeout(() => {
         setTypedCode((prev) => prev + codeLineText[charIndex]);
         setCharIndex((prev) => prev + 1);
       }, 80); // Adjust typing speed (ms)
       return () => clearTimeout(typingTimer);
-    } else if (charIndex >= codeLineText.length && !isTypingDone) {
+    } else if (!isTypingDone) { 
+      // This block runs once when charIndex reaches codeLineText.length
       setIsTypingDone(true);
+    }
+  }, [charIndex, isTypingDone, codeLineText.length]);
+
+  // Effect for showing prompt after typing is done
+  useEffect(() => {
+    if (isTypingDone && !showPromptLine) { 
+      // Only run if typing is done and prompt isn't shown yet
       const promptTimer = setTimeout(() => {
         setShowPromptLine(true);
         setCanClickToContinue(true);
       }, 500); // Delay before showing click prompt line
       return () => clearTimeout(promptTimer);
     }
-  }, [charIndex, isTypingDone]);
+  }, [isTypingDone, showPromptLine]);
 
   const handleClick = () => {
     if (canClickToContinue) {
