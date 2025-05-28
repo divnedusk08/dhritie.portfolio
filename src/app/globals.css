@@ -127,44 +127,163 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Preloader Animations */
+/* Preloader Animations (Old - Wand) - Can be removed or kept for reference */
 @keyframes wand-fade-in-keyframes {
   from { opacity: 0; transform: translateY(30px) rotate(-15deg); }
   to { opacity: 1; transform: translateY(0) rotate(0deg); }
 }
-
 @keyframes sparkle-effect-keyframes {
   0%, 100% { transform: scale(0.8); opacity: 0.7; }
   50% { transform: scale(1.2) translate(-2px, -2px); opacity: 1; filter: drop-shadow(0 0 8px currentColor); }
 }
-
 @keyframes preloader-fade-out-keyframes {
   from { opacity: 1; }
   to { opacity: 0; pointer-events: none; }
 }
-
-.animation-wand-fade-in {
-  animation: wand-fade-in-keyframes 0.5s ease-out forwards;
-}
-
-.animation-sparkle-effect {
-  animation: sparkle-effect-keyframes 1s ease-in-out infinite;
-  /* Delay this animation until the wand is visible */
-  animation-delay: 0.5s; 
-  opacity: 0; /* Start hidden, fade in via animation */
-  animation-fill-mode: forwards; /* Keep last frame */
-}
-/* Sparkle needs to become visible when its animation starts */
-@keyframes sparkle-visibility {
-  0% { opacity: 0; }
-  1% { opacity: 0.7; } /* Corresponds to sparkle-effect-keyframes start */
-  100% { opacity: 0.7; }
-}
-.animation-sparkle-effect {
-  animation: sparkle-effect-keyframes 1s ease-in-out 0.5s infinite, sparkle-visibility 0.01s 0.5s forwards;
-}
+.animation-wand-fade-in { animation: wand-fade-in-keyframes 0.5s ease-out forwards; }
+.animation-sparkle-effect { animation: sparkle-effect-keyframes 1s ease-in-out 0.5s infinite, sparkle-visibility 0.01s 0.5s forwards; }
+@keyframes sparkle-visibility { 0% { opacity: 0; } 1% { opacity: 0.7; } 100% { opacity: 0.7; } }
+.animation-preloader-fade-out { animation: preloader-fade-out-keyframes 1s ease-in forwards; }
 
 
-.animation-preloader-fade-out {
-  animation: preloader-fade-out-keyframes 1s ease-in forwards;
+/* Magical Book Preloader Styles */
+.magical-book-preloader {
+  perspective: 1500px;
+}
+
+.book-container {
+  position: relative;
+  width: 300px; /* Adjust as needed */
+  height: 400px; /* Adjust as needed */
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.book {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  animation: book-levitate 5s ease-in-out infinite, book-subtle-rotate 15s linear infinite;
+  transform-origin: center center;
+}
+
+.book-is-open .book {
+  transform: scale(1.1); /* Slightly larger when open */
+}
+
+.book-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, hsl(var(--primary) / 0.9), hsl(var(--primary) / 0.7));
+  border: 2px solid hsl(var(--primary-foreground) / 0.3);
+  border-radius: 8px 2px 2px 8px; /* Typical book cover shape */
+  transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Swing open effect */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.3), inset 0 0 10px hsl(var(--primary) / 0.5);
+  backface-visibility: hidden; /* Hide back when closed */
+  z-index: 10;
+}
+
+.book-is-open .book-cover {
+  transform: rotateY(-150deg); /* Open the cover wide */
+}
+
+.book-cover-content {
+  text-align: center;
+}
+
+.book-pages-container {
+  position: absolute;
+  top: 0;
+  left: 0; /* Start hidden behind cover */
+  width: 100%;
+  height: 100%;
+  background: hsl(var(--card));
+  border-radius: 2px 8px 8px 2px; /* Inner pages edge */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  opacity: 0;
+  transform: rotateY(20deg) translateX(10px); /* Slightly angled as if inside */
+  transition: opacity 0.5s 0.4s ease-out, transform 0.5s 0.4s ease-out; /* Delay to match cover opening */
+  z-index: 5;
+  overflow-y: auto;
+  box-shadow: inset 3px 0 10px rgba(0,0,0,0.1);
+}
+
+.book-is-open .book-pages-container {
+  opacity: 1;
+  transform: rotateY(0deg) translateX(0px);
+}
+
+.book-page-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: hsl(var(--background) / 0.8);
+  color: hsl(var(--foreground));
+  border-radius: var(--radius);
+  text-align: left;
+  width: 100%;
+  font-weight: 500;
+  transition: background-color 0.2s, transform 0.2s;
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+.book-page-link:hover {
+  background-color: hsl(var(--muted));
+  transform: translateX(5px);
+}
+
+.book-page-link:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Sparkles */
+.book-sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 223, 100, 0.9); /* Golden yellow */
+  border-radius: 50%;
+  box-shadow: 0 0 8px 3px rgba(255, 223, 100, 0.7);
+  opacity: 0;
+  animation: sparkle-movement 2s infinite ease-in-out;
+  pointer-events: none; /* So they don't interfere with clicks */
+}
+
+@keyframes book-levitate {
+  0%, 100% { transform: translateY(0) rotateZ(-1deg); }
+  50% { transform: translateY(-15px) rotateZ(1deg); }
+}
+
+@keyframes book-subtle-rotate {
+  from { transform: rotateY(-5deg); }
+  to { transform: rotateY(5deg); }
+}
+
+@keyframes sparkle-movement {
+  0%, 100% { opacity: 0; transform: scale(0.5) translate(0, 0); }
+  50% { opacity: 1; transform: scale(1) translate(5px, -5px); }
+  75% { opacity: 0.8; transform: scale(0.8) translate(-5px, 5px); }
+}
+
+.book-zoom-out-animation {
+  animation: book-zoom-out-effect 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+@keyframes book-zoom-out-effect {
+  0% { transform: scale(1.1) opacity(1); } /* Start from slightly zoomed if open */
+  100% { transform: scale(2.5) opacity(0); }
 }

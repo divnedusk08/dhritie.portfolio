@@ -2,31 +2,51 @@
 "use client"; 
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { BioGeneratorForm } from "@/components/about/bio-generator-form";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { UserCircle2 } from "lucide-react";
+import { UserCircle2, User, Award, Briefcase, Mail } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { Preloader } from "@/components/layout/preloader";
+// import { Preloader } from "@/components/layout/preloader"; // Old preloader
+import { MagicalBookPreloader } from "@/components/layout/magical-book-preloader";
+
+// Navigation items for the magical book
+const bookNavItems = [
+  { href: "/", label: "About Me", icon: User },
+  { href: "/achievements", label: "Achievements", icon: Award },
+  { href: "/projects", label: "Projects", icon: Briefcase },
+  { href: "/contact", label: "Contact", icon: Mail },
+];
 
 export default function HomePage() {
   const [currentBio, setCurrentBio] = useState<string>(
     "Welcome to my personal space! I am a passionate individual dedicated to creating impactful solutions and continuously learning new things. Explore my work and achievements to get a better sense of my journey."
   );
-  const [isLoading, setIsLoading] = useState(true);
+  const [showPreloader, setShowPreloader] = useState(true);
+  const router = useRouter();
 
   const handleBioUpdate = (newBio: string) => {
     setCurrentBio(newBio);
   };
 
-  const handlePreloaderLoaded = () => {
-    setIsLoading(false);
+  const handleBookNavigation = (href: string) => {
+    setShowPreloader(false);
+    // If the link is not for the current page (About Me, which is '/'), then navigate.
+    // Otherwise, just revealing the content is enough.
+    if (href !== router.pathname && href !== "/") { // Check current path for more robust logic if HomePage can be other than '/'
+      router.push(href);
+    } else if (href === "/" && router.pathname !== "/") { // Explicitly navigate to home if book says "About Me" but we are not on "/"
+        router.push("/");
+    }
+    // If href is "/" and we are already on "/", setShowPreloader(false) is enough.
   };
 
-  if (isLoading) {
-    return <Preloader onLoaded={handlePreloaderLoaded} />;
+
+  if (showPreloader) {
+    return <MagicalBookPreloader onNavigation={handleBookNavigation} navItems={bookNavItems} />;
   }
 
   return (

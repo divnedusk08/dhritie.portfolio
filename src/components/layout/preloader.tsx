@@ -4,6 +4,9 @@
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
+// This is the OLD wand preloader. It can be removed or kept for reference.
+// The new preloader is MagicalBookPreloader.tsx
+
 interface PreloaderProps {
   onLoaded: () => void;
 }
