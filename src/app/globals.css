@@ -60,7 +60,7 @@ body {
     --sidebar-ring: 22 86% 66%;
   }
 
-  /* Dark theme inspired by the provided image */
+  /* Dark theme with purpleish-pink accents */
   .dark {
     --background: 230 15% 8%; /* Very Dark Desaturated Blue */
     --foreground: 0 0% 95%;   /* Off-white */
@@ -77,34 +77,34 @@ body {
     --border: 230 10% 25%; /* Slightly lighter border */
     --input: 230 10% 22%;  /* Slightly lighter input */
 
-    --primary: 275 70% 75%; /* Lavender for "Hi, I'm" text */
-    --primary-foreground: 0 0% 95%; /* For text on primary buttons etc. */
+    --primary: 270 70% 75%; /* Purple-ish (e.g., Lavender) */
+    --primary-foreground: 270 70% 15%; /* Darker text for on purple-ish buttons */
 
-    --secondary: 220 80% 60%; /* Example: Blue for a potential action button like in example */
+    --secondary: 220 80% 60%; /* Example: Blue for a potential action button */
     --secondary-foreground: 0 0% 95%;
 
-    --accent: 330 90% 65%;   /* Vibrant Pink/Magenta for Name text */
-    --accent-foreground: 0 0% 10%; /* Dark text for on accent bg if needed */
+    --accent: 320 85% 70%;   /* Pink (e.g., Vibrant Pink/Magenta) */
+    --accent-foreground: 320 85% 10%; /* Dark text for on pink bg if needed */
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --ring: 275 70% 75%; /* Lavender for focus rings */
+    --ring: 270 70% 75%; /* Purple-ish for focus rings */
 
-    --chart-1: 275 70% 75%;
-    --chart-2: 330 90% 65%;
-    --chart-3: 220 80% 60%;
+    --chart-1: 270 70% 75%; /* Purple-ish */
+    --chart-2: 320 85% 70%; /* Pink */
+    --chart-3: 220 80% 60%; /* Blue */
     --chart-4: 230 15% 40%;
     --chart-5: 0 0% 95%;
 
     --sidebar-background: 230 15% 10%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 275 70% 75%;
+    --sidebar-primary: 270 70% 75%;
     --sidebar-primary-foreground: 0 0% 10%;
-    --sidebar-accent: 330 90% 65%;
+    --sidebar-accent: 320 85% 70%;
     --sidebar-accent-foreground: 0 0% 10%;
     --sidebar-border: 230 10% 20%;
-    --sidebar-ring: 275 70% 75%;
+    --sidebar-ring: 270 70% 75%;
   }
 }
 

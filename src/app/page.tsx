@@ -27,7 +27,7 @@ export default function HomePage() {
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1 page-transition">
-        {/* About Me Section (Hero + Bio) */}
+        {/* Hero Section */}
         <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24">
           <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
             <span className="text-primary">Hi, I'm </span>
@@ -38,10 +38,10 @@ export default function HomePage() {
           </p>
         </section>
 
+        {/* About Me Details & Bio Generator */}
         <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
-          {/* This div could also be part of the #about section or a new one like #bio */}
           <div className="py-6 md:py-8">
-            <h2 className="mb-4 text-2xl font-semibold text-foreground flex items-center">
+            <h2 className="mb-4 text-2xl font-semibold text-primary flex items-center">
               <UserCircle2 className="mr-3 h-7 w-7" />
               About Me
             </h2>
@@ -57,7 +57,7 @@ export default function HomePage() {
         
           <Separator className="my-12" />
 
-          <div id="bio-generator"> {/* Optional: give bio generator its own ID if needed for direct linking */}
+          <div id="bio-generator">
             <BioGeneratorForm onBioGenerated={handleBioUpdate} initialBio={currentBio} />
           </div>
         </div>
