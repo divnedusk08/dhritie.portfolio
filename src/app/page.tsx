@@ -98,7 +98,7 @@ export default function HomePage() {
                 <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
                   <p>{currentBio}</p>
                   <p>
-                    Beyond my professional pursuits, I enjoy [mention a hobby or interest],
+                    Beyond my professional pursuits, I enjoy painting,
                     which helps me maintain a fresh perspective and creative drive. I'm always open
                     to new challenges and collaborations that push boundaries and create value.
                   </p>
