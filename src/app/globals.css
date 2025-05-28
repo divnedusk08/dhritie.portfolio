@@ -155,42 +155,36 @@ body {
   animation: subtle-blink 1.5s infinite;
 }
 
-/* Preloader - Deathly Hallows Symbol */
-.deathly-hallows-symbol-container {
-  position: relative;
-  width: 150px; /* Adjust size as needed */
-  height: 150px; /* Adjust size as needed */
-}
-
-.deathly-hallows-symbol {
+/* Preloader Title Animation */
+.preloader-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
-  animation: fadeInGlowSymbol 2.0s ease-in-out forwards; /* Duration should be less than preloader total duration */
 }
 
-.dh-triangle, .dh-circle, .dh-line {
-  stroke: hsl(var(--accent)); /* Use accent color (pink) */
-  stroke-width: 8;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.preloader-title-text {
+  font-size: 3rem; /* Adjust size as needed */
+  font-weight: bold;
+  color: hsl(var(--accent)); /* Use accent color (pink) */
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeInScaleUpTitle 2.0s ease-out forwards; /* Duration should be less than preloader total duration */
+  text-shadow: 0 0 10px hsla(var(--accent), 0.5), 0 0 20px hsla(var(--accent), 0.3);
 }
 
-@keyframes fadeInGlowSymbol {
+@keyframes fadeInScaleUpTitle {
   0% {
     opacity: 0;
-    filter: drop-shadow(0 0 0px hsla(var(--accent), 0.0));
+    transform: scale(0.8);
   }
-  50% {
+  60% { /* Hold scaled up for a bit */
     opacity: 1;
-    filter: drop-shadow(0 0 15px hsla(var(--accent), 0.7));
-  }
-  75% {
-    opacity: 1;
-    filter: drop-shadow(0 0 20px hsla(var(--accent), 0.5));
+    transform: scale(1.05);
   }
   100% {
     opacity: 1;
-    filter: drop-shadow(0 0 10px hsla(var(--accent), 0.6));
+    transform: scale(1);
   }
 }
