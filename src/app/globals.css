@@ -132,3 +132,15 @@ body {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Typewriter cursor blink animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typewriter-cursor {
+  display: inline-block; /* To allow transform if needed and proper spacing */
+  animation: blink 0.7s infinite;
+  margin-left: 0.1em; /* Small space before cursor */
+}
