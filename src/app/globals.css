@@ -160,7 +160,7 @@ body {
   background-color: #0d1117; /* GitHub dark terminal background */
   color: #c9d1d9; /* GitHub dark terminal text */
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-  font-size: 1rem; /* Base font size for code */
+  font-size: 1.25rem; /* Increased base font size for code */
   padding: 1.5rem;
 }
 
@@ -196,7 +196,7 @@ body {
 
 .click-prompt-inline {
   color: #f0b90b; /* A bright yellow/gold for prompt */
-  font-size: 1.1rem; /* Slightly adjusted for inline context */
+  /* font-size: 1.1rem; /* Kept relative to parent, but can be adjusted if needed */
   animation: subtle-blink 1.8s infinite;
   white-space: nowrap;
   /* margin-left: -1.5ch; Ensure alignment if needed, might depend on line number width */
