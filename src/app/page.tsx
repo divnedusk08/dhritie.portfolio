@@ -19,7 +19,7 @@ export default function HomePage() {
     "Welcome to my personal space! I am a passionate individual dedicated to creating impactful solutions and continuously learning new things. Explore my work and achievements to get a better sense of my journey."
   );
 
-  const fullTitle = "Hi, I'm Dhriti Erusalagandi"; 
+  const fullTitle = "Hi, I'm Dhriti"; 
   const [typedTitle, setTypedTitle] = useState("");
   const [showCursor, setShowCursor] = useState(true);
 
@@ -33,9 +33,7 @@ export default function HomePage() {
         setTypedTitle(fullTitle.substring(0, typedTitle.length + 1));
       }, 100); 
     } else {
-      // Keep cursor for a moment then hide, or hide immediately
-      // For now, hide immediately after typing
-      setShowCursor(false);
+      setShowCursor(false); // Hide cursor once typing is complete
     }
     return () => clearTimeout(typingTimeoutId);
   }, [typedTitle, fullTitle, isLoading]);
@@ -50,12 +48,12 @@ export default function HomePage() {
       <Header />
       <main className="flex-1 page-transition">
         {/* Hero Section */}
-        <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24">
-          <h1 className="text-5xl font-bold tracking-tight text-primary sm:text-6xl md:text-7xl">
+        <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24 bg-background text-primary">
+          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
             {typedTitle}
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
-          <p className="mt-8 max-w-3xl font-[var(--font-dancing-script)] text-foreground/90 text-xl sm:text-2xl md:text-3xl"> {/* Updated tagline styles */}
+          <p className="mt-8 max-w-3xl font-[var(--font-love-ya-like-a-sister)] text-foreground/90 text-xl sm:text-2xl md:text-3xl">
             I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
           </p>
           <div className="mt-12 flex flex-col items-center animate-subtle-blink">

@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 import { Geist } from 'next/font/google';
-import { Dancing_Script } from 'next/font/google'; // Added Dancing Script
+import { Love_Ya_Like_A_Sister } from 'next/font/google'; // Added Love Ya Like A Sister
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -10,10 +10,10 @@ const geistSans = Geist({
   subsets: ['latin'],
 });
 
-const dancingScript = Dancing_Script({ // Configured Dancing Script
-  variable: '--font-dancing-script',
+const loveYaLikeASister = Love_Ya_Like_A_Sister({ // Configured Love Ya Like A Sister
+  variable: '--font-love-ya-like-a-sister',
   subsets: ['latin'],
-  weight: ['400', '700'], // Include weights if needed, default is 400
+  weight: ['400'], // Love Ya Like A Sister typically has one weight
 });
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${dancingScript.variable} font-sans antialiased`}> {/* Added dancingScript variable */}
+      <body className={`${geistSans.variable} ${loveYaLikeASister.variable} font-sans antialiased`}> {/* Added loveYaLikeASister variable */}
         <ThemeProvider
           attribute="class"
           defaultTheme="dark" 
