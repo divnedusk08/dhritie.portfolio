@@ -19,7 +19,7 @@ export default function HomePage() {
     "Welcome to my personal space! I am a passionate individual dedicated to creating impactful solutions and continuously learning new things. Explore my work and achievements to get a better sense of my journey."
   );
 
-  const fullTitle = "Hi, I'm Dhriti"; 
+  const fullTitle = "Hi, I'm Dhriti Erusalagandi"; 
   const [typedTitle, setTypedTitle] = useState("");
   const [showCursor, setShowCursor] = useState(true);
 
@@ -28,12 +28,14 @@ export default function HomePage() {
 
     let typingTimeoutId: NodeJS.Timeout;
     if (typedTitle.length < fullTitle.length) {
-      setShowCursor(true); // Ensure cursor is visible while typing
+      setShowCursor(true); 
       typingTimeoutId = setTimeout(() => {
         setTypedTitle(fullTitle.substring(0, typedTitle.length + 1));
       }, 100); 
     } else {
-      setShowCursor(false); // Hide cursor when typing is complete
+      // Keep cursor for a moment then hide, or hide immediately
+      // For now, hide immediately after typing
+      setShowCursor(false);
     }
     return () => clearTimeout(typingTimeoutId);
   }, [typedTitle, fullTitle, isLoading]);
@@ -53,7 +55,7 @@ export default function HomePage() {
             {typedTitle}
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
-          <p className="mt-6 max-w-3xl font-bold text-md text-muted-foreground sm:text-lg md:text-xl">
+          <p className="mt-8 max-w-3xl font-[var(--font-dancing-script)] text-foreground/90 text-xl sm:text-2xl md:text-3xl"> {/* Updated tagline styles */}
             I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
           </p>
           <div className="mt-12 flex flex-col items-center animate-subtle-blink">
@@ -81,7 +83,7 @@ export default function HomePage() {
         </div>
 
         {/* Achievements Section */}
-        <section id="achievements" className="py-12 md:py-16 bg-muted/20 dark:bg-muted/10">
+        <section id="achievements" className="py-12 md:py-16 bg-primary/10 dark:bg-primary/5">
           <AchievementsSection />
         </section>
 
@@ -91,7 +93,7 @@ export default function HomePage() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-12 md:py-16 bg-muted/20 dark:bg-muted/10">
+        <section id="contact" className="py-12 md:py-16 bg-primary/10 dark:bg-primary/5">
           <ContactSection />
         </section>
 
