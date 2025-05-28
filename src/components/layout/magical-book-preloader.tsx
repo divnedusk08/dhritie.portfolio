@@ -1,13 +1,8 @@
 
 "use client";
 
-import { useRouter } from "next/navigation";
-import type { NextRouter } from "next/router";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
-// User, Award, Briefcase, Mail are used by navItems prop
-// BookOpen icon is no longer used directly here, but kept for potential future use or if navItems changes.
 import { User, Award, Briefcase, Mail, BookOpen } from "lucide-react";
 
 interface NavItem {
@@ -33,25 +28,24 @@ export function MagicalBookPreloader({ onNavigation, navItems }: MagicalBookPrel
 
   useEffect(() => {
     const generateSparkles = () => {
-      const newSparkles = Array.from({ length: 15 }).map(() => ({ // Increased sparkles for larger book
+      const newSparkles = Array.from({ length: 25 }).map(() => ({ // Increased sparkles
         top: `${Math.random() * 110 - 5}%`, 
         left: `${Math.random() * 110 - 5}%`,
-        animationDelay: `${Math.random() * 2.5}s`,
-        transform: `scale(${Math.random() * 0.6 + 0.4})`,
+        animationDelay: `${Math.random() * 3}s`, // Slower, more spread out animation
+        transform: `scale(${Math.random() * 0.7 + 0.5})`, // Slightly larger sparkles
       }));
       setSparkles(newSparkles);
     };
     generateSparkles();
-    const intervalId = setInterval(generateSparkles, 3000);
+    const intervalId = setInterval(generateSparkles, 3500); // Slower refresh
     return () => clearInterval(intervalId);
   }, []);
 
   useEffect(() => {
     if (isBookOpen && !showPageLinks) {
-      // Delay showing links to allow cover animation and simulate page "filling"
       const timer = setTimeout(() => {
         setShowPageLinks(true);
-      }, 800); // Corresponds to book-cover transition duration
+      }, 800); 
       return () => clearTimeout(timer);
     }
   }, [isBookOpen, showPageLinks]);
@@ -67,13 +61,13 @@ export function MagicalBookPreloader({ onNavigation, navItems }: MagicalBookPrel
     setIsAnimatingOut(true);
     setTimeout(() => {
       onNavigation(href);
-    }, 700); // Match book-zoom-out-animation duration
+    }, 700); 
   };
 
   return (
     <div
       className={cn(
-        "magical-book-preloader fixed inset-0 z-[100] flex items-center justify-center bg-background transition-opacity duration-700",
+        "magical-book-preloader fixed inset-0 z-[100] flex items-center justify-center transition-opacity duration-700",
         isAnimatingOut ? "opacity-0 pointer-events-none" : "opacity-100"
       )}
     >
@@ -88,20 +82,11 @@ export function MagicalBookPreloader({ onNavigation, navItems }: MagicalBookPrel
           {!isAnimatingOut && sparkles.map((style, i) => <Sparkle key={i} style={style} />)}
 
           <div className="book-cover">
-             <Image
-                src="https://placehold.co/800x600.png" // Larger base image for better quality on larger display
-                alt="The Spellbook of Dhriti Erusalagandi"
-                layout="fill"
-                objectFit="cover"
-                className="pointer-events-none" // Prevents image from interfering with click
-                data-ai-hint="3D book ancient spellbook" // Updated hint
-                priority // Preload the cover image
-              />
             <div className="book-cover-content">
-              <h1 className="book-title-text">
-                The Spellbook of Dhriti Erusalagandi
-              </h1>
-              {/* Removed blinking "click here" prompt from cover */}
+              <BookOpen className="book-icon h-20 w-20 md:h-28 md:w-28 mb-4 text-primary-foreground/80" />
+              <p className="book-prompt-text">
+                click here to open
+              </p>
             </div>
           </div>
 
