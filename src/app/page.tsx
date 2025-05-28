@@ -32,8 +32,7 @@ export default function HomePage() {
         setTypedTitle(fullTitle.substring(0, typedTitle.length + 1));
       }, 100); 
     } else {
-      // Keep cursor blinking after typing is complete
-      // setShowCursor(true); // This is already default
+      setShowCursor(false); // Hide cursor when typing is complete
     }
     return () => clearTimeout(typingTimeoutId);
   }, [typedTitle, fullTitle, isLoading]);
@@ -49,9 +48,9 @@ export default function HomePage() {
       <main className="flex-1 page-transition">
         {/* Hero Section */}
         <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
             <span className="text-primary">{typedTitle}</span>
-            {(showCursor || typedTitle.length < fullTitle.length) && <span className="typewriter-cursor">|</span>}
+            {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-muted-foreground sm:text-xl md:text-2xl">
             I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
