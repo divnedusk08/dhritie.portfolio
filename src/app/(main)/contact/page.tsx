@@ -10,11 +10,10 @@ import { submitContactForm } from "@/lib/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Mail, Send, MessageSquare, User } from "lucide-react";
+import { Loader2, Mail, Send, MessageSquare, User, MapPin, Building } from "lucide-react";
 
 const initialState = {
   message: "",
@@ -77,77 +76,96 @@ export default function ContactSection() {
     }
   }, [state, toast, form]);
 
+  const myInfo = [
+    { icon: User, label: "Full Name", value: "Dhriti Erusalagandi" },
+    { icon: Mail, label: "Email", value: "dhriti.erusalagandi58@k12.leanderisd.org" },
+    { icon: MapPin, label: "Location", value: "Austin, Texas" }, // Placeholder location
+  ];
+
   return (
-    <div className="container mx-auto max-w-3xl py-8 px-4 md:py-12">
+    <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
       <header className="mb-10 text-center">
-        <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
-          Get In Touch
+        <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          <span className="text-primary">Get in</span> <span className="text-accent">Touch</span>
         </h2>
-        <p className="mt-3 text-lg text-muted-foreground sm:text-xl">
-          Have a question or want to work together? Feel free to reach out.
-        </p>
       </header>
 
-      <Card className="shadow-xl">
-        <CardHeader>
-          <CardTitle className="flex items-center text-2xl">
-            <Mail className="mr-3 h-7 w-7 text-primary" /> Contact Me
-          </CardTitle>
-          <CardDescription>
-            Fill out the form below and I'll get back to you as soon as possible.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form action={formAction} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center"><User className="mr-2 h-4 w-4 text-muted-foreground" />Full Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Your Name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center"><Mail className="mr-2 h-4 w-4 text-muted-foreground" />Email Address</FormLabel>
-                    <FormControl>
-                      <Input type="email" placeholder="your.email@example.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center"><MessageSquare className="mr-2 h-4 w-4 text-muted-foreground" />Message</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="Your message here..."
-                        className="min-h-[150px]"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <SubmitButton />
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
+      <div className="grid gap-10 md:grid-cols-2 md:gap-12">
+        {/* My Info Section */}
+        <Card className="shadow-xl bg-card/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-2xl font-semibold text-primary">My Info</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {myInfo.map((item, index) => (
+              <div key={index} className="flex items-start space-x-4">
+                <item.icon className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">{item.label}</p>
+                  <p className="text-lg text-foreground">{item.value}</p>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        {/* Send Message Form Section */}
+        <Card className="shadow-xl bg-card/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-2xl font-semibold text-primary">Send Message</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Form {...form}>
+              <form action={formAction} className="space-y-6">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center text-muted-foreground"><User className="mr-2 h-4 w-4" />Your Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="John Doe" {...field} className="bg-background/70" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center text-muted-foreground"><Mail className="mr-2 h-4 w-4" />Your Email</FormLabel>
+                      <FormControl>
+                        <Input type="email" placeholder="your.email@example.com" {...field} className="bg-background/70" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center text-muted-foreground"><MessageSquare className="mr-2 h-4 w-4" />Your Message</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Your message here..."
+                          className="min-h-[150px] bg-background/70"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <SubmitButton />
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
