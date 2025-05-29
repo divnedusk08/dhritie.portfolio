@@ -107,7 +107,7 @@ export default function HomePage() {
                       Who I Am
                     </h3>
                     <div className="prose prose-xl max-w-none text-foreground/90 dark:prose-invert">
-                      <p className="text-2xl">{currentBio}</p>
+                      <p>{currentBio}</p>
                     </div>
                 </section>
 
