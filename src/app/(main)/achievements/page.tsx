@@ -32,7 +32,7 @@ const achievementsData: Achievement[] = [
     description: "Validated expertise in AWS Cloud concepts, services, security, architecture, pricing, and support.",
     icon: CheckCircle,
     category: "Certification",
-    certificateUrl: "#", 
+    certificateUrl: "#",
   },
   {
     id: "3",
@@ -60,7 +60,7 @@ const achievementsData: Achievement[] = [
     description: "As an NJHS member, I’m committed to academic excellence, leadership, and service. I strive to set a positive example, give back to my community, and grow as a responsible and respectful student.",
     icon: Star,
     category: "Recognition",
-    certificateUrl: "#", // TODO: Replace this with the actual URL to your certificate PDF/image
+    certificateUrl: "https://www.canva.com/design/DAGoyESDlWA/MA5K589KntScG5sSdWa-wg/view?utm_content=DAGoyESDlWA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h86560a1732",
   },
 ];
 
