@@ -79,8 +79,8 @@ export default function HomePage() {
             I'm a passionate entrepreneur driven by creativity, curiosity, and the desire to build something that makes a difference. I believe in solving real problems, telling impactful stories, and turning bold ideas into reality.
           </p>
           <div className="mt-12 flex flex-col items-center animate-subtle-blink">
-            <p className="text-base text-muted-foreground">Scroll down to explore</p> {/* Increased font size from text-sm */}
-            <ChevronDown className="h-8 w-8 text-muted-foreground mt-1" /> {/* Increased icon size from h-6 w-6 */}
+            <p className="text-base text-muted-foreground">Scroll down to explore</p>
+            <ChevronDown className="h-8 w-8 text-muted-foreground mt-1" />
           </div>
         </section>
 
@@ -109,7 +109,7 @@ export default function HomePage() {
                 <h3 className="mb-6 text-xl font-semibold text-accent">
                   Areas of Interest
                 </h3>
-                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-8 md:grid-cols-3">
                   {areasOfInterest.map((interest, index) => (
                     <div key={index} className="flex flex-col items-center text-center p-4 rounded-lg ">
                       <interest.icon className="h-12 w-12 mb-3 text-accent" />
@@ -143,4 +143,3 @@ export default function HomePage() {
     </div>
   );
 }
-
