@@ -18,7 +18,7 @@ const projectsData: Project[] = [
       "User-friendly interface for easy task management",
     ],
     techStack: ["React", "TypeScript", "Shadcn/UI", "Tailwind CSS", "Local Storage"],
-    // liveLink: "#", // Replace with actual link
+    liveLink: "https://9000-firebase-studio-1748367990635.cluster-pgviq6mvsncnqxx6kr7pbz65v6.cloudworkstations.dev", // Added live link
     // repoLink: "#", // Replace with actual link
   },
 ];
