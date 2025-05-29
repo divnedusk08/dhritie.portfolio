@@ -47,7 +47,7 @@ const achievementsData: Achievement[] = [
   },
   {
     id: "7",
-    title: "1st Place for the most innovative product idea overall",
+    title: "1st Place – Most Innovative Product Idea (LED Wishes)",
     issuer: undefined,
     date: "May 24, 2025",
     description: "Winning 1st place for the Most Innovative Product Idea with LED Wishes reflects my passion for combining creativity and purpose. LED Wishes is a unique concept designed to bring light and positivity into people's lives—literally and symbolically.",
