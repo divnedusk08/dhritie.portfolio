@@ -16,6 +16,16 @@ interface Achievement {
 
 const achievementsData: Achievement[] = [
   {
+    id: "5",
+    title: "NJHS Member",
+    issuer: "fsms.njhs@leanderisd.org",
+    date: "May 14, 2025",
+    description: "As an NJHS member, I’m committed to academic excellence, leadership, and service. I strive to set a positive example, give back to my community, and grow as a responsible and respectful student.",
+    icon: Star,
+    category: "Recognition",
+    certificateUrl: "https://www.canva.com/design/DAGoyESDlWA/MA5K589KntScG5sSdWa-wg/view?utm_content=DAGoyESDlWA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h86560a1732",
+  },
+  {
     id: "8",
     title: "NJHS Officer",
     issuer: undefined,
@@ -24,16 +34,6 @@ const achievementsData: Achievement[] = [
     icon: Star,
     category: "Recognition",
     certificateUrl: "https://www.canva.com/design/DAGoyRvEA3Y/B8cbHCnuWCgMTO_-QkcPdQ/view?utm_content=DAGoyRvEA3Y&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h3242b9cc6a",
-  },
-  {
-    id: "7",
-    title: "1st Place for the most innovative product idea overall",
-    issuer: undefined,
-    date: "May 24, 2025",
-    description: "Winning 1st place for the Most Innovative Product Idea with LED Wishes reflects my passion for combining creativity and purpose. LED Wishes is a unique concept designed to bring light and positivity into people's lives—literally and symbolically.",
-    icon: Lightbulb,
-    category: "Award",
-    certificateUrl: "https://www.canva.com/design/DAGoyYK4vys/nmDmYpj_l_tVIlMOZTx64Q/view?utm_content=DAGoyYK4vys&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h51fb745301",
   },
   {
     id: "6",
@@ -46,14 +46,14 @@ const achievementsData: Achievement[] = [
     certificateUrl: "https://www.canva.com/design/DAGoyKfr944/ruAXSbeMeYR8GYsFBr_2fQ/view?utm_content=DAGoyKfr944&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h573e089b61",
   },
   {
-    id: "5",
-    title: "NJHS Member",
-    issuer: "fsms.njhs@leanderisd.org",
-    date: "May 14, 2025",
-    description: "As an NJHS member, I’m committed to academic excellence, leadership, and service. I strive to set a positive example, give back to my community, and grow as a responsible and respectful student.",
-    icon: Star,
-    category: "Recognition",
-    certificateUrl: "https://www.canva.com/design/DAGoyESDlWA/MA5K589KntScG5sSdWa-wg/view?utm_content=DAGoyESDlWA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h86560a1732",
+    id: "7",
+    title: "1st Place for the most innovative product idea overall",
+    issuer: undefined,
+    date: "May 24, 2025",
+    description: "Winning 1st place for the Most Innovative Product Idea with LED Wishes reflects my passion for combining creativity and purpose. LED Wishes is a unique concept designed to bring light and positivity into people's lives—literally and symbolically.",
+    icon: Lightbulb,
+    category: "Award",
+    certificateUrl: "https://www.canva.com/design/DAGoyYK4vys/nmDmYpj_l_tVIlMOZTx64Q/view?utm_content=DAGoyYK4vys&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h51fb745301",
   },
 ];
 
