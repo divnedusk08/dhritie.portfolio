@@ -78,7 +78,7 @@ export default function ContactSection() {
 
   const myInfo = [
     { icon: User, label: "Full Name", value: "Dhriti Erusalagandi" },
-    { icon: Mail, label: "Email", value: "dhriti.erusalagandi58@k12.leanderisd.org" },
+    { icon: Mail, label: "Email", value: "divineduskdragon08@gmail.com" },
     { icon: MapPin, label: "Location", value: "Austin, Texas" }, // Placeholder location
   ];
 
