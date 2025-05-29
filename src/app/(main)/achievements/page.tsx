@@ -77,15 +77,14 @@ export default function AchievementsSection() {
       <div
         ref={containerRef}
         className={cn(
-          "grid gap-8 md:grid-cols-2",
-          "fade-in-up",
+          "grid gap-8 md:grid-cols-2 stagger-fade-in-container",
           { "is-visible": isVisible }
         )}
       >
         {achievementsData.map((achievement, index) => (
           <Card 
             key={achievement.id} 
-            className="flex flex-col overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl"
+            className="flex flex-col overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl stagger-item"
             style={{ animationDelay: `${index * 100}ms` }} // Stagger animation
           >
             <CardHeader className="bg-muted/30 p-6">

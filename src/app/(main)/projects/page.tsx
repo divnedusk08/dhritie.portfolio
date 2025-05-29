@@ -41,13 +41,16 @@ export default function ProjectsSection() {
         <div
           ref={containerRef}
           className={cn(
-            "grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
-            "fade-in-up",
+            "grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 stagger-fade-in-container",
             { "is-visible": isVisible }
           )}
         >
           {projectsData.map((project, index) => (
-            <div key={project.id} style={{ animationDelay: `${index * 100}ms` }}> {/* Stagger animation */}
+            <div 
+              key={project.id} 
+              className="stagger-item"
+              style={{ animationDelay: `${index * 100}ms` }}
+            > {/* Stagger animation */}
               <ProjectCard project={project} />
             </div>
           ))}
