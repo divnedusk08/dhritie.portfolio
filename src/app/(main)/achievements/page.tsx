@@ -11,7 +11,7 @@ interface Achievement {
   description: string;
   icon: React.ElementType;
   category: "Award" | "Certification" | "Recognition" | "Project Milestone";
-  certificateUrl?: string; // Added optional certificate URL
+  certificateUrl?: string;
 }
 
 const achievementsData: Achievement[] = [
@@ -32,7 +32,7 @@ const achievementsData: Achievement[] = [
     description: "Validated expertise in AWS Cloud concepts, services, security, architecture, pricing, and support.",
     icon: CheckCircle,
     category: "Certification",
-    certificateUrl: "#", // Example placeholder
+    certificateUrl: "#", 
   },
   {
     id: "3",
@@ -107,20 +107,31 @@ export default function AchievementsSection() {
                 <span className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                     {achievement.category}
                 </span>
-                {achievement.certificateUrl && achievement.certificateUrl !== "#" && (
-                  <Button asChild variant="outline" size="sm">
-                    <a href={achievement.certificateUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      View Certificate
-                    </a>
-                  </Button>
-                )}
-                 {achievement.certificateUrl && achievement.certificateUrl === "#" && (
-                   <Button variant="outline" size="sm" disabled title="Certificate URL not yet provided">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      View Certificate
-                    </Button>
-                 )}
+                {(() => {
+                  const url = achievement.certificateUrl;
+                  // Condition for an enabled button: URL must exist, not be empty/whitespace, and not be "#"
+                  if (url && url.trim() !== "" && url !== "#") {
+                    return (
+                      <Button asChild variant="outline" size="sm">
+                        <a href={url} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          View Certificate
+                        </a>
+                      </Button>
+                    );
+                  } else if (typeof url === 'string') {
+                    // If url is a string but doesn't meet the criteria for an enabled button (e.g., it's "#", "", or "   ")
+                    // then show a disabled button.
+                    return (
+                       <Button variant="outline" size="sm" disabled title="Certificate URL not yet provided or is invalid">
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          View Certificate
+                        </Button>
+                    );
+                  }
+                  // If url is null or undefined, render nothing for the certificate button.
+                  return null;
+                })()}
             </CardFooter>
           </Card>
         ))}
