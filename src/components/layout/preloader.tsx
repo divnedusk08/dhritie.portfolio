@@ -53,7 +53,7 @@ export function Preloader({ onLoaded }: PreloaderProps) {
       const line2AppearTimer = setTimeout(() => {
           setShowLine2(true);
           setActiveCursor('line2'); 
-      }, 100); 
+      }, 2000); // Changed from 100ms to 2000ms (2 seconds)
       return () => clearTimeout(line2AppearTimer);
     }
 
