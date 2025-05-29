@@ -16,51 +16,14 @@ interface Achievement {
 
 const achievementsData: Achievement[] = [
   {
-    id: "1",
-    title: "Innovator of the Year",
-    issuer: "Tech Solutions Inc.",
-    date: "March 2023",
-    description: "Awarded for developing a groundbreaking AI-driven platform that revolutionized customer engagement.",
-    icon: Award,
-    category: "Award",
-  },
-  {
     id: "6",
     title: "Entrepreneur of the Year",
     issuer: "Lisa Hood",
-    date: "May 24, 2025", // Updated date
+    date: "May 24, 2025",
     description: "Being recognized as Entrepreneur of the Year is an honor that reflects my passion for innovation, problem-solving, and turning ideas into action. This achievement represents my commitment to creativity, leadership, and making a real impact through projects that matter.",
     icon: Lightbulb,
     category: "Award",
-    certificateUrl: "https://www.canva.com/design/DAGoyKfr944/2fe0leAmslYsepPdKcrmoA/edit?utm_content=DAGoyKfr944&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton", // Added certificate URL
-  },
-  {
-    id: "2",
-    title: "Certified Cloud Practitioner",
-    issuer: "Amazon Web Services",
-    date: "June 2022",
-    description: "Validated expertise in AWS Cloud concepts, services, security, architecture, pricing, and support.",
-    icon: CheckCircle,
-    category: "Certification",
-    certificateUrl: "#",
-  },
-  {
-    id: "3",
-    title: "Top Performer Q3 2023",
-    issuer: "Internal Recognition",
-    date: "September 2023",
-    description: "Recognized for exceeding performance targets and significant contributions to team projects.",
-    icon: Star,
-    category: "Recognition",
-  },
-  {
-    id: "4",
-    title: "Project Phoenix Launch",
-    issuer: "Self-led Initiative",
-    date: "December 2023",
-    description: "Successfully launched Project Phoenix, a community-focused application, reaching 10,000 active users in the first month.",
-    icon: Briefcase,
-    category: "Project Milestone",
+    certificateUrl: "https://www.canva.com/design/DAGoyKfr944/2fe0leAmslYsepPdKcrmoA/edit?utm_content=DAGoyKfr944&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
   },
   {
     id: "5",
