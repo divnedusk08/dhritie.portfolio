@@ -209,7 +209,6 @@ body {
 
 .click-prompt-inline {
   color: #f0b90b; /* A bright yellow/gold for prompt */
-  /* animation: subtle-blink 1.8s infinite; */ /* Blinking managed by JS if needed, or separate class */
   white-space: nowrap;
 }
 
@@ -221,33 +220,21 @@ body {
   transition: background 0.1s ease-out;
 }
 
-/* Interactive text hover effect - Underline Reveal */
+/* Interactive text hover effect - Text Shadow Pop */
 .interactive-text-hover {
   position: relative;
-  display: inline-block; /* Important for pseudo-element positioning */
-  padding-bottom: 2px; /* Space for the underline */
+  display: inline-block;
   cursor: pointer;
-  transition: color 0.3s ease-out; /* Optional: if you want text color to change slightly */
+  transition: text-shadow 0.3s ease-out, transform 0.3s ease-out;
 }
 
-.interactive-text-hover::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px; /* Underline thickness */
-  background-color: hsl(var(--accent)); /* Use accent color for underline */
-  transform: scaleX(0);
-  transform-origin: center; /* Underline grows from the center */
-  transition: transform 0.3s ease-out;
+.interactive-text-hover:hover {
+  text-shadow: 2px 2px 5px hsl(var(--accent) / 0.5);
+  transform: translateY(-1px); /* Optional: slight lift */
 }
 
-.interactive-text-hover:hover::after {
-  transform: scaleX(1);
-}
 
-/* Number fill preloader styles - If still needed or for future reference */
+/* Number fill preloader styles */
 .number-fill-preloader {
   position: fixed;
   inset: 0;
