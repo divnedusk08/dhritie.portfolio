@@ -16,6 +16,16 @@ interface Achievement {
 
 const achievementsData: Achievement[] = [
   {
+    id: "7", // New ID
+    title: "1st Place for the most innovative product idea overall",
+    issuer: undefined, // No issuer specified, so it will be omitted
+    date: "May 24, 2025",
+    description: "Winning 1st place for the Most Innovative Product Idea with LED Wishes reflects my passion for combining creativity and purpose. LED Wishes is a unique concept designed to bring light and positivity into people's lives—literally and symbolically.",
+    icon: Lightbulb,
+    category: "Award",
+    certificateUrl: "https://www.canva.com/design/DAGoyYK4vys/nmDmYpj_l_tVIlMOZTx64Q/view?utm_content=DAGoyYK4vys&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h51fb745301",
+  },
+  {
     id: "6",
     title: "Entrepreneur of the Year",
     issuer: "Lisa Hood",
