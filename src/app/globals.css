@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), var(--font-lora), Arial, Helvetica, sans-serif;
 }
 
 @layer base {
@@ -220,7 +220,7 @@ body {
 /* Hero background interactive effect */
 #about {
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Helps contain pseudo-elements if they were to expand */
   background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), hsl(var(--primary) / 0.15), transparent 80%);
   transition: background 0.1s ease-out;
 }
@@ -235,6 +235,35 @@ body {
 
 .interactive-text-hover:hover {
   transform: scale(1.05); /* Zoom in slightly */
+}
+
+/* Text Glint Hover Effect */
+.text-glint-hover {
+  position: relative; /* Needed for ::after positioning */
+  overflow: hidden;   /* Keeps the glint within the text boundaries */
+  display: inline-block; /* Ensures it works on potentially inline title elements */
+}
+
+.text-glint-hover::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 20px; /* Adjust width of the glint line */
+  height: 200%; /* Ensure it covers the text height */
+  background: linear-gradient(
+    to right,
+    hsla(0, 0%, 100%, 0) 0%,      /* Transparent start */
+    hsla(0, 0%, 100%, 0.3) 50%,   /* Semi-transparent white middle */
+    hsla(0, 0%, 100%, 0) 100%     /* Transparent end */
+  );
+  transform: skewX(-25deg) translateX(-250%); /* Initial position: far left, skewed */
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth sweep animation */
+  pointer-events: none; /* So it doesn't interfere with text selection or other hovers */
+}
+
+.text-glint-hover:hover::after {
+  transform: skewX(-25deg) translateX(350%); /* Final position: far right (increased to ensure it clears wider text) */
 }
 
 

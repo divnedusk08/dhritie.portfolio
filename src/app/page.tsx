@@ -107,11 +107,11 @@ export default function HomePage() {
       <main className="flex-1 page-transition">
         {/* Hero Section */}
         <section id="about" ref={heroSectionRef} className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 pt-16 pb-8 md:pt-24 md:pb-12 bg-background">
-          <h1 className="text-5xl font-bold tracking-tight text-primary sm:text-6xl md:text-7xl interactive-text-hover">
+          <h1 className="text-5xl font-bold tracking-tight text-primary sm:text-6xl md:text-7xl interactive-text-hover text-glint-hover">
             {typedTitle}
             {isCursorInDOM && <span className={`typewriter-cursor ${cursorAnimationClass}`}>|</span>}
           </h1>
-          <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-2xl text-foreground/90 interactive-text-hover">
+          <p className="mt-8 max-w-3xl font-[var(--font-lora)] text-2xl text-foreground/90 interactive-text-hover">
             A passionate young entrepreneur and innovative thinker, turning bold ideas into impactful projects through creativity, leadership, and purpose.
           </p>
           <div className="mt-12 flex flex-col items-center">
