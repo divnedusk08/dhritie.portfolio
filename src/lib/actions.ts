@@ -41,7 +41,7 @@ export async function submitContactForm(
   try {
     const data = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>', // IMPORTANT: For testing. For production, verify your domain with Resend.
-      to: ['dhriti.erusalagandi58@k12.leanderisd.org'],
+      to: ['divineduskdragon08@gmail.com'], // Updated email address
       subject: `New Contact from ${name} via Portfolio`,
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6;">
@@ -79,3 +79,4 @@ export async function submitContactForm(
     };
   }
 }
+
