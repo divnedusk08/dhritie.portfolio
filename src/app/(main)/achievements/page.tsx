@@ -1,6 +1,7 @@
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Award, Briefcase, CalendarDays, CheckCircle, Star } from "lucide-react";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Award, Briefcase, CalendarDays, CheckCircle, Star, ExternalLink } from "lucide-react";
 
 interface Achievement {
   id: string;
@@ -10,6 +11,7 @@ interface Achievement {
   description: string;
   icon: React.ElementType;
   category: "Award" | "Certification" | "Recognition" | "Project Milestone";
+  certificateUrl?: string; // Added optional certificate URL
 }
 
 const achievementsData: Achievement[] = [
@@ -30,6 +32,7 @@ const achievementsData: Achievement[] = [
     description: "Validated expertise in AWS Cloud concepts, services, security, architecture, pricing, and support.",
     icon: CheckCircle,
     category: "Certification",
+    certificateUrl: "#", // Example placeholder
   },
   {
     id: "3",
@@ -57,6 +60,7 @@ const achievementsData: Achievement[] = [
     description: "As an NJHS member, I’m committed to academic excellence, leadership, and service. I strive to set a positive example, give back to my community, and grow as a responsible and respectful student.",
     icon: Star,
     category: "Recognition",
+    certificateUrl: "#", // TODO: Replace this with the actual URL to your certificate PDF/image
   },
 ];
 
@@ -99,11 +103,25 @@ export default function AchievementsSection() {
                 <span>{achievement.date}</span>
               </div>
             </CardContent>
-            <div className="border-t bg-card p-4 text-right">
+            <CardFooter className="border-t bg-card p-4 flex justify-between items-center">
                 <span className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                     {achievement.category}
                 </span>
-            </div>
+                {achievement.certificateUrl && achievement.certificateUrl !== "#" && (
+                  <Button asChild variant="outline" size="sm">
+                    <a href={achievement.certificateUrl} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      View Certificate
+                    </a>
+                  </Button>
+                )}
+                 {achievement.certificateUrl && achievement.certificateUrl === "#" && (
+                   <Button variant="outline" size="sm" disabled title="Certificate URL not yet provided">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      View Certificate
+                    </Button>
+                 )}
+            </CardFooter>
           </Card>
         ))}
       </div>
