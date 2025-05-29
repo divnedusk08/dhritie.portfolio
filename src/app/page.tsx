@@ -17,7 +17,7 @@ import ContactSection from "@/app/(main)/contact/page";
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true); // Preloader state
   const [currentBio, setCurrentBio] = useState<string>(
-    "I’m a passionate 8th grader at Stiles Middle School with a strong interest in entrepreneurship, creativity, and making a difference through innovative ideas. I enjoy coming up with original solutions, exploring new projects, and learning through hands-on experience. I’m driven by curiosity, motivated by impact, and always ready to grow and take on something new."
+    "I’m a passionate 8th grader at Stiles Middle School with a strong interest in entrepreneurship, creativity, and making a difference through innovative ideas. I love coming up with original solutions, exploring new projects, and learning through hands-on experience. Outside of that, I enjoy painting—it keeps me inspired and fuels my creativity. I'm always open to new challenges that help me grow and create something meaningful."
   );
 
   const fullTitle = "Hi, I'm Dhriti";
@@ -98,11 +98,6 @@ export default function HomePage() {
                 </h3>
                 <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
                   <p>{currentBio}</p>
-                  <p>
-                    Beyond my professional pursuits, I enjoy painting,
-                    which helps me maintain a fresh perspective and creative drive. I'm always open
-                    to new challenges and collaborations that push boundaries and create value.
-                  </p>
                 </div>
               </section>
 
