@@ -14,6 +14,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Mail, Send, MessageSquare, User, MapPin, Building } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { cn } from "@/lib/utils";
 
 const initialState = {
   message: "",
@@ -39,6 +41,7 @@ function SubmitButton() {
 export default function ContactSection() {
   const [state, formAction] = useActionState(submitContactForm, initialState);
   const { toast } = useToast();
+  const [containerRef, isVisible] = useIntersectionObserver({ threshold: 0.1, triggerOnce: true });
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(ContactFormSchema),
@@ -90,7 +93,14 @@ export default function ContactSection() {
         </h2>
       </header>
 
-      <div className="grid gap-10 md:grid-cols-2 md:gap-12">
+      <div
+        ref={containerRef}
+        className={cn(
+          "grid gap-10 md:grid-cols-2 md:gap-12",
+          "fade-in-up",
+          { "is-visible": isVisible }
+        )}
+      >
         {/* My Info Section */}
         <Card className="shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>

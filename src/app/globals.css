@@ -13,7 +13,7 @@ body {
 
 @layer base {
   :root {
-    /* Existing Light Theme */
+    /* Existing Light Theme - Will use Dark by default */
     --background: 210 29% 96%; /* #F0F4F8 Very light blue */
     --foreground: 210 10% 23%; /* Dark text for readability */
 
@@ -45,7 +45,7 @@ body {
     --radius: 0.5rem;
 
     --chart-1: 210 31% 28%;
-    --chart-2: 22 86% 66%;
+    --chart-2: 22 86% 66%; /* Orange */
     --chart-3: 210 28% 45%;
     --chart-4: 210 25% 80%;
     --chart-5: 210 10% 23%;
@@ -168,6 +168,20 @@ body {
   animation: subtle-blink 1.5s infinite;
 }
 
+/* Bobbing animation for scroll arrow */
+@keyframes bobbing {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.animate-bobbing {
+  animation: bobbing 2s infinite ease-in-out;
+}
+
+
 /* Python-style Preloader Styles */
 .python-preloader-container {
   background-color: #0d1117; /* GitHub dark terminal background */
@@ -286,5 +300,22 @@ body {
   animation: subtle-blink 1.5s infinite;
 }
 
-/* Remove any leftover magical book preloader styles */
-/* Styles for magical-book-preloader, book-container, book-cover, etc. are removed if they existed from previous versions */
+/* Scroll-triggered animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0; /* Initial state for elements that will fade in */
+}
+
+.fade-in-up.is-visible {
+  animation: fadeInUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}

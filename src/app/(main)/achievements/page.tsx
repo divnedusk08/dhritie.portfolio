@@ -1,7 +1,10 @@
 
+"use client";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Award, Briefcase, CalendarDays, CheckCircle, Star, ExternalLink, Lightbulb } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { cn } from "@/lib/utils";
 
 interface Achievement {
   id: string;
@@ -58,6 +61,8 @@ const achievementsData: Achievement[] = [
 ];
 
 export default function AchievementsSection() {
+  const [containerRef, isVisible] = useIntersectionObserver({ threshold: 0.1, triggerOnce: true });
+
   return (
     <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
       <header className="mb-10 text-center">
@@ -69,9 +74,20 @@ export default function AchievementsSection() {
         </p>
       </header>
 
-      <div className="grid gap-8 md:grid-cols-2">
-        {achievementsData.map((achievement) => (
-          <Card key={achievement.id} className="flex flex-col overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl">
+      <div
+        ref={containerRef}
+        className={cn(
+          "grid gap-8 md:grid-cols-2",
+          "fade-in-up",
+          { "is-visible": isVisible }
+        )}
+      >
+        {achievementsData.map((achievement, index) => (
+          <Card 
+            key={achievement.id} 
+            className="flex flex-col overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl"
+            style={{ animationDelay: `${index * 100}ms` }} // Stagger animation
+          >
             <CardHeader className="bg-muted/30 p-6">
               <div className="flex items-start gap-4">
                 <span className="rounded-full bg-accent p-3 text-accent-foreground">
@@ -102,7 +118,6 @@ export default function AchievementsSection() {
                 </span>
                 {(() => {
                   const url = achievement.certificateUrl;
-                  // Condition for an enabled button: URL must exist, not be empty/whitespace, and not be "#"
                   if (url && url.trim() !== "" && url !== "#") {
                     return (
                       <Button asChild variant="outline" size="sm">
@@ -113,8 +128,6 @@ export default function AchievementsSection() {
                       </Button>
                     );
                   } else if (typeof url === 'string') {
-                    // If url is a string but doesn't meet the criteria for an enabled button (e.g., it's "#", "", or "   ")
-                    // then show a disabled button.
                     return (
                        <Button variant="outline" size="sm" disabled title="Certificate URL not yet provided or is invalid">
                           <ExternalLink className="mr-2 h-4 w-4" />
@@ -122,7 +135,6 @@ export default function AchievementsSection() {
                         </Button>
                     );
                   }
-                  // If url is null or undefined, render nothing for the certificate button.
                   return null;
                 })()}
             </CardFooter>
