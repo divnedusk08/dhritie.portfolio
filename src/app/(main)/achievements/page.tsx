@@ -84,7 +84,7 @@ export default function AchievementsSection() {
         {achievementsData.map((achievement, index) => (
           <Card 
             key={achievement.id} 
-            className="flex flex-col overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl stagger-item"
+            className="flex flex-col overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl stagger-item bg-card/80 backdrop-blur-sm"
             style={{ animationDelay: `${index * 100}ms` }} // Stagger animation
           >
             <CardHeader className="bg-muted/30 p-6">
