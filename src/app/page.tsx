@@ -22,25 +22,39 @@ export default function HomePage() {
 
   const fullTitle = "Hi, I'm Dhriti";
   const [typedTitle, setTypedTitle] = useState("");
-  const [showCursor, setShowCursor] = useState(true);
+  const [isCursorInDOM, setIsCursorInDOM] = useState(true);
+  const [cursorAnimationClass, setCursorAnimationClass] = useState('animate-blink');
+
 
   useEffect(() => {
     if (isLoading) return;
 
     let typingTimeoutId: NodeJS.Timeout;
+    let cursorBlinkTimeoutId: NodeJS.Timeout;
+    let cursorFadeTimeoutId: NodeJS.Timeout;
+
     if (typedTitle.length < fullTitle.length) {
-      setShowCursor(true);
+      setCursorAnimationClass('animate-blink'); // Ensure cursor is blinking while typing
+      setIsCursorInDOM(true);
       typingTimeoutId = setTimeout(() => {
         setTypedTitle(fullTitle.substring(0, typedTitle.length + 1));
       }, 100);
     } else {
-      // Keep cursor for a bit after typing, then hide
-      const cursorHideTimeoutId = setTimeout(() => {
-        setShowCursor(false);
-      }, 500); // Cursor visible for 0.5s after typing
-      return () => clearTimeout(cursorHideTimeoutId);
+      // Typing finished
+      setCursorAnimationClass('animate-blink'); // Keep blinking for a short duration
+      cursorBlinkTimeoutId = setTimeout(() => {
+        setCursorAnimationClass('animate-fade-out'); // Start fading out
+        cursorFadeTimeoutId = setTimeout(() => {
+          setIsCursorInDOM(false); // Remove cursor from DOM after fade
+        }, 300); // Duration of fade-out animation
+      }, 500); // How long to keep blinking after typing finishes
     }
-    return () => clearTimeout(typingTimeoutId);
+
+    return () => {
+      clearTimeout(typingTimeoutId);
+      clearTimeout(cursorBlinkTimeoutId);
+      clearTimeout(cursorFadeTimeoutId);
+    };
   }, [typedTitle, fullTitle, isLoading]);
 
 
@@ -74,7 +88,7 @@ export default function HomePage() {
         <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24 bg-background">
           <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl text-primary">
             {typedTitle}
-            {showCursor && <span className="typewriter-cursor">|</span>}
+            {isCursorInDOM && <span className={`typewriter-cursor ${cursorAnimationClass}`}>|</span>}
           </h1>
           <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-2xl text-foreground/90">
             A passionate young entrepreneur and innovative thinker, turning bold ideas into impactful projects through creativity, leadership, and purpose.
@@ -96,7 +110,7 @@ export default function HomePage() {
                 <h3 className="mb-3 text-xl font-semibold text-accent">
                   Who I Am
                 </h3>
-                <div className="prose prose-lg max-w-none text-foreground/90 dark:prose-invert">
+                <div className="prose prose-xl max-w-none text-foreground/90 dark:prose-invert">
                   <p>{currentBio}</p>
                 </div>
               </section>
