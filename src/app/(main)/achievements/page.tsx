@@ -25,13 +25,14 @@ const achievementsData: Achievement[] = [
     category: "Award",
   },
   {
-    id: "6", // New ID for the new achievement
+    id: "6",
     title: "Entrepreneur of the Year",
     issuer: "Lisa Hood",
-    date: "October 2024", // Placeholder date
+    date: "May 24, 2025", // Updated date
     description: "Being recognized as Entrepreneur of the Year is an honor that reflects my passion for innovation, problem-solving, and turning ideas into action. This achievement represents my commitment to creativity, leadership, and making a real impact through projects that matter.",
     icon: Lightbulb,
     category: "Award",
+    certificateUrl: "https://www.canva.com/design/DAGoyKfr944/2fe0leAmslYsepPdKcrmoA/edit?utm_content=DAGoyKfr944&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton", // Added certificate URL
   },
   {
     id: "2",
