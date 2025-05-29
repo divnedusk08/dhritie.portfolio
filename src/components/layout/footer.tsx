@@ -7,7 +7,7 @@ export function Footer() {
           &copy; {new Date().getFullYear()} Dhriti E's Portfolio. All rights reserved.
         </p>
         <p className="text-center text-sm text-muted-foreground">
-          Designed with passion.
+          Let’s build something bold together.
         </p>
       </div>
     </footer>
