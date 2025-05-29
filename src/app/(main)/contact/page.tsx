@@ -124,7 +124,7 @@ export default function ContactSection() {
                     <FormItem>
                       <FormLabel className="flex items-center text-muted-foreground"><User className="mr-2 h-4 w-4" />Your Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe" {...field} className="bg-background/70" />
+                        <Input placeholder="" {...field} className="bg-background/70" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
