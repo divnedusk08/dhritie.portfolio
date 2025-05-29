@@ -1,7 +1,9 @@
+
 "use server";
 
 import { z } from "zod";
 import { ContactFormSchema } from "./schemas";
+import { Resend } from 'resend';
 
 export type ContactFormState = {
   message: string;
@@ -10,8 +12,10 @@ export type ContactFormState = {
   success: boolean;
 };
 
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export async function submitContactForm(
-  prevState: ContactFormState, // prevState is not directly used for mutation here, but good practice for action signature
+  prevState: ContactFormState,
   data: FormData
 ): Promise<ContactFormState> {
   const formData = Object.fromEntries(data);
@@ -26,34 +30,52 @@ export async function submitContactForm(
     });
     return {
       message: "Invalid form data. Please check the fields below.",
-      fields: formData as Record<string, string>, // Return submitted data to repopulate
+      fields: formData as Record<string, string>,
       issues: parsed.error.issues.map((issue) => issue.message),
       success: false,
     };
   }
 
-  // Simulate sending an email or saving to a database
-  console.log("Contact form submitted:", parsed.data);
-  // In a real app, you would integrate with an email service or database here.
-  // For example:
-  // await sendEmail({ to: "your-email@example.com", from: parsed.data.email, subject: `Contact from ${parsed.data.name}`, body: parsed.data.message });
+  const { name, email, message: userMessage } = parsed.data;
 
-  // Simulate a delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  
-  // Check for a simulated error condition (e.g. 10% chance of failure)
-  // if (Math.random() < 0.1) {
-  //   return {
-  //     message: "Failed to send message due to a server error. Please try again later.",
-  //     fields: parsed.data, // Return parsed data in case of server error after validation
-  //     success: false,
-  //   };
-  // }
+  try {
+    const data = await resend.emails.send({
+      from: 'Portfolio Contact <onboarding@resend.dev>', // IMPORTANT: For testing. For production, verify your domain with Resend.
+      to: ['dhriti.erusalagandi58@k12.leanderisd.org'],
+      subject: `New Contact from ${name} via Portfolio`,
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+          <p><strong>Message:</strong></p>
+          <p style="white-space: pre-wrap; border-left: 3px solid #eee; padding-left: 10px;">${userMessage}</p>
+        </div>
+      `,
+    });
 
-  return {
-    message: `Thank you, ${parsed.data.name}! Your message has been received. I'll get back to you soon.`,
-    success: true,
-    fields: undefined, // Clear fields on success
-    issues: undefined, // Clear issues on success
-  };
+    console.log("Email sent successfully:", data);
+
+    return {
+      message: `Thank you, ${name}! Your message has been received. I'll get back to you soon.`,
+      success: true,
+      fields: undefined,
+      issues: undefined,
+    };
+
+  } catch (error) {
+    console.error("Failed to send email:", error);
+    let errorMessage = "Sorry, there was an error sending your message. Please try again later.";
+    if (error instanceof Error) {
+        // You can check for specific error messages from Resend if needed
+        // For example, if (error.message.includes("invalid_api_key"))
+        // errorMessage = "Email server configuration error. Please contact support.";
+    }
+    return {
+      message: errorMessage,
+      success: false,
+      fields: parsed.data,
+      issues: ["Email sending failed due to a server error."],
+    };
+  }
 }
