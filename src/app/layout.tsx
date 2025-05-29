@@ -17,7 +17,7 @@ const merriweather = Merriweather({ // Configured Merriweather
 });
 
 export const metadata: Metadata = {
-  title: 'Persona | Your Professional Portfolio',
+  title: "Dhriti E's Portfolio | Your Professional Portfolio",
   description: 'Showcasing skills, projects, and achievements.',
 };
 
