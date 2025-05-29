@@ -6,7 +6,6 @@ import { ChevronDown, UserCircle2, Code, Brain, Palette, Lightbulb } from "lucid
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Preloader } from "@/components/layout/preloader";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Import section components
 import AchievementsSection from "@/app/(main)/achievements/page";
@@ -99,46 +98,48 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* About Me Details */}
-        <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
-            <h2 className="text-center text-3xl font-bold text-primary mb-10">About Me</h2>
-            <section className="mb-10 px-6 md:px-8">
-                <h3 className="mb-3 text-xl font-semibold text-accent">
-                  Who I Am
-                </h3>
-                <div className="prose prose-xl max-w-none text-foreground/90 dark:prose-invert">
-                  <p>{currentBio}</p>
-                </div>
-            </section>
-
-            <section className="px-6 md:px-8">
-                <h3 className="mb-6 text-xl font-semibold text-accent">
-                  Areas of Interest
-                </h3>
-                <div className="grid gap-8 md:grid-cols-3">
-                  {areasOfInterest.map((interest, index) => (
-                    <div key={index} className="flex flex-col items-center text-center p-4 rounded-lg ">
-                      <interest.icon className="h-12 w-12 mb-3 text-accent" />
-                      <h4 className="mb-1 text-lg font-medium text-foreground">{interest.title}</h4>
-                      <p className="text-sm text-muted-foreground">{interest.description}</p>
+        {/* About Me Details Section */}
+        <section className="py-12 md:py-16 bg-primary/10 dark:bg-primary/5">
+            <div className="container mx-auto max-w-5xl px-4">
+                <h2 className="text-center text-3xl font-bold text-primary mb-10">About Me</h2>
+                <section className="mb-10">
+                    <h3 className="mb-3 text-xl font-semibold text-accent">
+                      Who I Am
+                    </h3>
+                    <div className="prose prose-xl max-w-none text-foreground/90 dark:prose-invert">
+                      <p className="text-2xl">{currentBio}</p>
                     </div>
-                  ))}
-                </div>
-            </section>
-        </div>
+                </section>
+
+                <section>
+                    <h3 className="mb-6 text-xl font-semibold text-accent">
+                      Areas of Interest
+                    </h3>
+                    <div className="grid gap-8 md:grid-cols-3">
+                      {areasOfInterest.map((interest, index) => (
+                        <div key={index} className="flex flex-col items-center text-center p-4 rounded-lg ">
+                          <interest.icon className="h-12 w-12 mb-3 text-accent" />
+                          <h4 className="mb-1 text-lg font-medium text-foreground">{interest.title}</h4>
+                          <p className="text-sm text-muted-foreground">{interest.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                </section>
+            </div>
+        </section>
 
         {/* Achievements Section */}
-        <section id="achievements" className="py-12 md:py-16 bg-primary/10 dark:bg-primary/5">
+        <section id="achievements" className="py-12 md:py-16 bg-background">
           <AchievementsSection />
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-12 md:py-16">
+        <section id="projects" className="py-12 md:py-16 bg-primary/10 dark:bg-primary/5">
           <ProjectsSection />
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-12 md:py-16 bg-primary/10 dark:bg-primary/5">
+        <section id="contact" className="py-12 md:py-16 bg-background">
           <ContactSection />
         </section>
 
@@ -147,3 +148,4 @@ export default function HomePage() {
     </div>
   );
 }
+
