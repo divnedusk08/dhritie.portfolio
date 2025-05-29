@@ -16,9 +16,19 @@ interface Achievement {
 
 const achievementsData: Achievement[] = [
   {
-    id: "7", // New ID
+    id: "8", // New ID
+    title: "NJHS Officer",
+    issuer: undefined, // No issuer specified
+    date: "May 21, 2025",
+    description: "As an NJHS Officer, I take pride in leading with integrity, responsibility, and a commitment to service. I help organize events, support fellow members, and represent our chapter’s core values of scholarship, leadership, service, character, and citizenship. This role allows me to grow as a leader while making a positive impact on my school and community.",
+    icon: Star,
+    category: "Recognition",
+    certificateUrl: "https://www.canva.com/design/DAGoyRvEA3Y/B8cbHCnuWCgMTO_-QkcPdQ/view?utm_content=DAGoyRvEA3Y&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h3242b9cc6a",
+  },
+  {
+    id: "7",
     title: "1st Place for the most innovative product idea overall",
-    issuer: undefined, // No issuer specified, so it will be omitted
+    issuer: undefined,
     date: "May 24, 2025",
     description: "Winning 1st place for the Most Innovative Product Idea with LED Wishes reflects my passion for combining creativity and purpose. LED Wishes is a unique concept designed to bring light and positivity into people's lives—literally and symbolically.",
     icon: Lightbulb,
