@@ -15,7 +15,7 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       <text
         x="0"
         y="16" // Adjusted y for better vertical alignment with larger font
-        fontFamily="var(--font-geist-sans), Arial, sans-serif"
+        fontFamily="var(--font-merriweather), serif" // Changed font to Merriweather
         fontSize="20"  // Increased font size
         fontWeight="bold"
         fill="currentColor"
