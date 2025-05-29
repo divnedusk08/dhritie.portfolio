@@ -17,7 +17,7 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
         y="16" // Adjusted y for better vertical alignment with larger font
         fontFamily="var(--font-geist-sans), sans-serif" // Changed font to Geist Sans
         fontSize="20"  // Increased font size
-        fontWeight="bold"
+        fontWeight="normal" // Changed from "bold" to "normal"
         fill="currentColor"
       >
         Dhriti Erusalagandi
@@ -25,4 +25,3 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-
