@@ -26,8 +26,8 @@ const projectsData: Project[] = [
     title: "TaskFlow",
     shortDescription: "My to-do list app is designed to help users stay organized, focused, and productive. With a clean interface and easy-to-use features, it makes task management simple and effective.",
     longDescription: "TaskFlow is a user-friendly to-do list application aimed at boosting personal productivity. It allows users to create, manage, and track their tasks, set priorities, and mark them as complete. The clean and intuitive interface ensures a seamless user experience.",
-    imageUrl: "https://placehold.co/600x375.png",
-    imageHint: "checklist icon", // Updated image hint
+    imageUrl: "https://placehold.co/600x375.png", // User needs to replace this with their actual image URL
+    imageHint: "checklist icon",
     purpose: "To offer a simple yet powerful tool for individuals to manage their daily tasks, improve organization, and enhance productivity.",
     functionality: [
       "Create new tasks with titles and descriptions",
