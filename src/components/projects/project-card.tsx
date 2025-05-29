@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -13,8 +14,8 @@ export interface Project {
   title: string;
   shortDescription: string;
   longDescription: string;
-  imageUrl: string;
-  imageHint: string;
+  imageUrl?: string; // Made imageUrl optional
+  imageHint?: string; // Made imageHint optional
   purpose: string;
   functionality: string[];
   techStack: string[];
@@ -31,88 +32,92 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <Card className="group flex h-full flex-col overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl">
-      <CardHeader className="relative p-0">
-        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger asChild>
-            <button className="block aspect-[16/10] w-full cursor-pointer overflow-hidden" aria-label={`View details for ${project.title}`}>
-              <Image
-                src={project.imageUrl}
-                alt={project.title}
-                width={600}
-                height={375}
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                data-ai-hint={project.imageHint}
-              />
-            </button>
-          </DialogTrigger>
-          <DialogContent className="max-w-3xl p-0">
-            <DialogHeader className="p-6 pb-4">
-              <DialogTitle className="text-3xl font-bold text-primary">{project.title}</DialogTitle>
-              <DialogDescription className="text-md text-muted-foreground">{project.shortDescription}</DialogDescription>
-            </DialogHeader>
-            <div className="max-h-[70vh] overflow-y-auto px-6 pb-6">
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        {project.imageUrl && ( // Conditionally render image and trigger if imageUrl exists
+          <CardHeader className="relative p-0">
+            <DialogTrigger asChild>
+              <button className="block aspect-[16/10] w-full cursor-pointer overflow-hidden" aria-label={`View details for ${project.title}`}>
+                <Image
+                  src={project.imageUrl}
+                  alt={project.title}
+                  width={600}
+                  height={375}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  data-ai-hint={project.imageHint || 'project image'}
+                />
+              </button>
+            </DialogTrigger>
+          </CardHeader>
+        )}
+        <DialogContent className="max-w-3xl p-0">
+          <DialogHeader className="p-6 pb-4">
+            <DialogTitle className="text-3xl font-bold text-primary">{project.title}</DialogTitle>
+            <DialogDescription className="text-md text-muted-foreground">{project.shortDescription}</DialogDescription>
+          </DialogHeader>
+          <div className="max-h-[70vh] overflow-y-auto px-6 pb-6">
+            {project.imageUrl && ( // Also conditionally render image inside dialog
               <Image
                 src={project.imageUrl}
                 alt={project.title}
                 width={800}
                 height={500}
                 className="mb-6 w-full rounded-lg object-cover shadow-md"
-                data-ai-hint={project.imageHint}
+                data-ai-hint={project.imageHint || 'project image'}
               />
-              <section className="mb-6">
-                <h3 className="mb-2 flex items-center text-xl font-semibold text-primary">
-                  <Info className="mr-2 h-5 w-5" />
-                  Project Overview
-                </h3>
-                <p className="text-foreground/90">{project.longDescription}</p>
-              </section>
-              <section className="mb-6">
-                <h3 className="mb-2 flex items-center text-xl font-semibold text-primary">
-                  <Lightbulb className="mr-2 h-5 w-5" />
-                  Purpose
-                </h3>
-                <p className="text-foreground/90">{project.purpose}</p>
-              </section>
-              <section className="mb-6">
-                <h3 className="mb-2 flex items-center text-xl font-semibold text-primary">
-                  <Settings2 className="mr-2 h-5 w-5" />
-                  Key Functionality
-                </h3>
-                <ul className="list-disc space-y-1 pl-5 text-foreground/90">
-                  {project.functionality.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </section>
-              <section className="mb-6">
-                <h3 className="mb-2 text-xl font-semibold text-primary">Tech Stack</h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech) => (
-                    <Badge key={tech} variant="secondary" className="text-sm">{tech}</Badge>
-                  ))}
-                </div>
-              </section>
-              <div className="mt-6 flex flex-wrap gap-3">
-                {project.liveLink && (
-                  <Button asChild variant="default" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" /> View Live
-                    </a>
-                  </Button>
-                )}
-                {project.repoLink && (
-                  <Button asChild variant="outline">
-                    <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" /> View Code
-                    </a>
-                  </Button>
-                )}
+            )}
+            <section className="mb-6">
+              <h3 className="mb-2 flex items-center text-xl font-semibold text-primary">
+                <Info className="mr-2 h-5 w-5" />
+                Project Overview
+              </h3>
+              <p className="text-foreground/90">{project.longDescription}</p>
+            </section>
+            <section className="mb-6">
+              <h3 className="mb-2 flex items-center text-xl font-semibold text-primary">
+                <Lightbulb className="mr-2 h-5 w-5" />
+                Purpose
+              </h3>
+              <p className="text-foreground/90">{project.purpose}</p>
+            </section>
+            <section className="mb-6">
+              <h3 className="mb-2 flex items-center text-xl font-semibold text-primary">
+                <Settings2 className="mr-2 h-5 w-5" />
+                Key Functionality
+              </h3>
+              <ul className="list-disc space-y-1 pl-5 text-foreground/90">
+                {project.functionality.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </section>
+            <section className="mb-6">
+              <h3 className="mb-2 text-xl font-semibold text-primary">Tech Stack</h3>
+              <div className="flex flex-wrap gap-2">
+                {project.techStack.map((tech) => (
+                  <Badge key={tech} variant="secondary" className="text-sm">{tech}</Badge>
+                ))}
               </div>
+            </section>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {project.liveLink && (
+                <Button asChild variant="default" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="mr-2 h-4 w-4" /> View Live
+                  </a>
+                </Button>
+              )}
+              {project.repoLink && (
+                <Button asChild variant="outline">
+                  <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
+                    <Github className="mr-2 h-4 w-4" /> View Code
+                  </a>
+                </Button>
+              )}
             </div>
-          </DialogContent>
-        </Dialog>
-      </CardHeader>
-      <CardContent className="flex-grow p-5">
+          </div>
+        </DialogContent>
+      </Dialog>
+      <CardContent className={`flex-grow p-5 ${!project.imageUrl ? 'pt-5' : ''}`}>
         <CardTitle className="mb-2 text-xl font-semibold text-primary group-hover:text-accent">
           {project.title}
         </CardTitle>
