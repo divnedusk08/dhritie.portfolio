@@ -31,7 +31,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
-    <Card className="group flex h-full flex-col overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl bg-card/80 backdrop-blur-sm">
+    <Card className="group flex h-full flex-col overflow-hidden shadow-lg transition-all duration-300 ease-out hover:shadow-2xl hover:-translate-y-1 hover:border-accent bg-card/80 backdrop-blur-sm">
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         {project.imageUrl && ( // Conditionally render image and trigger if imageUrl exists
           <CardHeader className="relative p-0">
