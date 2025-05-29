@@ -76,7 +76,7 @@ export default function HomePage() {
             {typedTitle}
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
-          <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-xl text-foreground/90">
+          <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-2xl text-foreground/90">
             A passionate young entrepreneur and innovative thinker, turning bold ideas into impactful projects through creativity, leadership, and purpose.
           </p>
           <div className="mt-12 flex flex-col items-center animate-subtle-blink">
