@@ -49,6 +49,15 @@ const achievementsData: Achievement[] = [
     icon: Briefcase,
     category: "Project Milestone",
   },
+  {
+    id: "5",
+    title: "NJHS Member",
+    issuer: "fsms.njhs@leanderisd.org",
+    date: "May 14, 2025",
+    description: "As an NJHS member, I’m committed to academic excellence, leadership, and service. I strive to set a positive example, give back to my community, and grow as a responsible and respectful student.",
+    icon: Star,
+    category: "Recognition",
+  },
 ];
 
 export default function AchievementsSection() {
