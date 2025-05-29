@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Award, Briefcase, CalendarDays, CheckCircle, Star, ExternalLink } from "lucide-react";
+import { Award, Briefcase, CalendarDays, CheckCircle, Star, ExternalLink, Lightbulb } from "lucide-react";
 
 interface Achievement {
   id: string;
@@ -22,6 +22,15 @@ const achievementsData: Achievement[] = [
     date: "March 2023",
     description: "Awarded for developing a groundbreaking AI-driven platform that revolutionized customer engagement.",
     icon: Award,
+    category: "Award",
+  },
+  {
+    id: "6", // New ID for the new achievement
+    title: "Entrepreneur of the Year",
+    issuer: "Lisa Hood",
+    date: "October 2024", // Placeholder date
+    description: "Being recognized as Entrepreneur of the Year is an honor that reflects my passion for innovation, problem-solving, and turning ideas into action. This achievement represents my commitment to creativity, leadership, and making a real impact through projects that matter.",
+    icon: Lightbulb,
     category: "Award",
   },
   {
