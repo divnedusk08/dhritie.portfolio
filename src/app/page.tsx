@@ -101,21 +101,17 @@ export default function HomePage() {
 
         {/* About Me Details */}
         <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
-         <Card className="shadow-xl bg-card/50 backdrop-blur-sm">
-            <CardHeader className="text-center">
-              <CardTitle className="text-3xl font-bold text-primary">About Me</CardTitle>
-            </CardHeader>
-            <CardContent className="px-6 py-8 md:px-8">
-              <section className="mb-10">
+            <h2 className="text-center text-3xl font-bold text-primary mb-10">About Me</h2>
+            <section className="mb-10 px-6 md:px-8">
                 <h3 className="mb-3 text-xl font-semibold text-accent">
                   Who I Am
                 </h3>
                 <div className="prose prose-xl max-w-none text-foreground/90 dark:prose-invert">
                   <p>{currentBio}</p>
                 </div>
-              </section>
+            </section>
 
-              <section>
+            <section className="px-6 md:px-8">
                 <h3 className="mb-6 text-xl font-semibold text-accent">
                   Areas of Interest
                 </h3>
@@ -128,9 +124,7 @@ export default function HomePage() {
                     </div>
                   ))}
                 </div>
-              </section>
-            </CardContent>
-          </Card>
+            </section>
         </div>
 
         {/* Achievements Section */}
