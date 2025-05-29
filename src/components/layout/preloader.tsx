@@ -9,7 +9,7 @@ interface PreloaderProps {
 }
 
 const codeLineText = 'print("Hi, I\'m Dhriti")';
-const promptText = "# Click anywhere to continue...";
+const promptText = '# Click anywhere to continue...';
 
 export function Preloader({ onLoaded }: PreloaderProps) {
   const [isVisible, setIsVisible] = useState(true);
@@ -53,7 +53,7 @@ export function Preloader({ onLoaded }: PreloaderProps) {
       const line2AppearTimer = setTimeout(() => {
           setShowLine2(true);
           setActiveCursor('line2'); 
-      }, 2000); // Changed from 100ms to 2000ms (2 seconds)
+      }, 1000); // Shortened pause to 1 second
       return () => clearTimeout(line2AppearTimer);
     }
 
