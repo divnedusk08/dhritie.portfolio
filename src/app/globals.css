@@ -141,9 +141,23 @@ body {
 
 .typewriter-cursor {
   display: inline-block;
-  animation: blink 0.7s infinite;
+  /* animation: blink 0.7s infinite; */ /* Animation controlled by JS now */
   margin-left: 0.1em;
 }
+
+.animate-blink {
+  animation: blink 0.7s infinite;
+}
+
+.animate-fade-out {
+  animation: fadeOutCursor 0.3s forwards;
+}
+
+@keyframes fadeOutCursor {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
 
 /* Subtle blink for scroll prompt */
 @keyframes subtle-blink {
@@ -199,3 +213,24 @@ body {
   animation: subtle-blink 1.8s infinite;
   white-space: nowrap;
 }
+
+/* Hero background interactive effect */
+#about {
+  position: relative;
+  overflow: hidden; /* To contain the pseudo-element if we used one */
+  /* background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), hsl(var(--primary) / 0.15), hsl(var(--background)) 40%); */
+  /* background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), hsl(var(--primary) / 0.2), hsl(var(--background)) 500px); */
+  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), hsl(var(--primary) / 0.15), transparent 80%);
+  transition: background 0.1s ease-out; /* Smooth transition for the gradient */
+}
+
+/* Interactive text hover effect */
+.interactive-text-hover {
+  transition: transform 0.2s ease-out;
+  display: inline-block; /* Ensures transform works correctly and respects text flow */
+}
+
+.interactive-text-hover:hover {
+  transform: scale(1.05); /* Subtle zoom effect */
+}
+

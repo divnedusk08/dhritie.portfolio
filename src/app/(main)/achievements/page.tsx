@@ -61,7 +61,7 @@ export default function AchievementsSection() {
   return (
     <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
       <header className="mb-10 text-center">
-        <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
+        <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl interactive-text-hover">
           My Achievements
         </h2>
         <p className="mt-3 text-lg text-muted-foreground sm:text-xl">
@@ -78,7 +78,7 @@ export default function AchievementsSection() {
                   <achievement.icon className="h-6 w-6" />
                 </span>
                 <div>
-                  <CardTitle className="text-xl font-semibold text-primary">
+                  <CardTitle className="text-xl font-semibold text-primary interactive-text-hover">
                     {achievement.title}
                   </CardTitle>
                   {achievement.issuer && (

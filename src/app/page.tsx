@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronDown, UserCircle2, Code, Brain, Palette, Lightbulb } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -23,6 +23,8 @@ export default function HomePage() {
   const [typedTitle, setTypedTitle] = useState("");
   const [isCursorInDOM, setIsCursorInDOM] = useState(true);
   const [cursorAnimationClass, setCursorAnimationClass] = useState('animate-blink');
+
+  const heroSectionRef = useRef<HTMLElement>(null);
 
 
   useEffect(() => {
@@ -56,6 +58,25 @@ export default function HomePage() {
     };
   }, [typedTitle, fullTitle, isLoading]);
 
+  useEffect(() => {
+    const heroElement = heroSectionRef.current;
+    if (!heroElement || isLoading) return;
+
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = heroElement.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      heroElement.style.setProperty('--mouse-x', `${x}px`);
+      heroElement.style.setProperty('--mouse-y', `${y}px`);
+    };
+
+    heroElement.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      heroElement.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [isLoading]);
+
 
   if (isLoading) {
     return <Preloader onLoaded={() => setIsLoading(false)} />;
@@ -84,12 +105,12 @@ export default function HomePage() {
       <Header />
       <main className="flex-1 page-transition">
         {/* Hero Section */}
-        <section id="about" className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 py-16 md:py-24 bg-background">
-          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl text-primary">
+        <section id="about" ref={heroSectionRef} className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center text-center px-4 pt-16 pb-8 md:pt-24 md:pb-12 bg-background">
+          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl text-primary interactive-text-hover">
             {typedTitle}
             {isCursorInDOM && <span className={`typewriter-cursor ${cursorAnimationClass}`}>|</span>}
           </h1>
-          <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-2xl text-foreground/90">
+          <p className="mt-8 max-w-3xl font-[var(--font-merriweather)] text-2xl text-foreground/90 interactive-text-hover">
             A passionate young entrepreneur and innovative thinker, turning bold ideas into impactful projects through creativity, leadership, and purpose.
           </p>
           <div className="mt-12 flex flex-col items-center animate-subtle-blink">
@@ -101,25 +122,25 @@ export default function HomePage() {
         {/* About Me Details Section */}
         <section className="py-12 md:py-16 bg-primary/10 dark:bg-primary/5">
             <div className="container mx-auto max-w-5xl px-4">
-                <h2 className="text-center text-3xl font-bold text-primary mb-10">About Me</h2>
+                <h2 className="text-center text-3xl font-bold text-primary mb-10 interactive-text-hover">About Me</h2>
                 <section className="mb-10">
-                    <h3 className="mb-3 text-xl font-semibold text-accent">
+                    <h3 className="mb-3 text-xl font-semibold text-accent interactive-text-hover">
                       Who I Am
                     </h3>
                     <div className="prose prose-xl max-w-none text-foreground/90 dark:prose-invert">
-                      <p>{currentBio}</p>
+                      <p className="text-2xl">{currentBio}</p>
                     </div>
                 </section>
 
                 <section>
-                    <h3 className="mb-6 text-xl font-semibold text-accent">
+                    <h3 className="mb-6 text-xl font-semibold text-accent interactive-text-hover">
                       Areas of Interest
                     </h3>
                     <div className="grid gap-8 md:grid-cols-3">
                       {areasOfInterest.map((interest, index) => (
                         <div key={index} className="flex flex-col items-center text-center p-4 rounded-lg ">
                           <interest.icon className="h-12 w-12 mb-3 text-accent" />
-                          <h4 className="mb-1 text-lg font-medium text-foreground">{interest.title}</h4>
+                          <h4 className="mb-1 text-lg font-medium text-foreground interactive-text-hover">{interest.title}</h4>
                           <p className="text-sm text-muted-foreground">{interest.description}</p>
                         </div>
                       ))}
@@ -148,4 +169,3 @@ export default function HomePage() {
     </div>
   );
 }
-

@@ -85,7 +85,7 @@ export default function ContactSection() {
   return (
     <div className="container mx-auto max-w-5xl py-8 px-4 md:py-12">
       <header className="mb-10 text-center">
-        <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+        <h2 className="text-4xl font-bold tracking-tight sm:text-5xl interactive-text-hover">
           <span className="text-accent">Get in</span> <span className="text-accent">Touch</span>
         </h2>
       </header>
@@ -94,7 +94,7 @@ export default function ContactSection() {
         {/* My Info Section */}
         <Card className="shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle className="text-2xl font-semibold text-primary">My Info</CardTitle>
+            <CardTitle className="text-2xl font-semibold text-primary interactive-text-hover">My Info</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             {myInfo.map((item, index) => (
@@ -102,7 +102,7 @@ export default function ContactSection() {
                 <item.icon className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">{item.label}</p>
-                  <p className="text-lg text-foreground">{item.value}</p>
+                  <p className="text-lg text-foreground interactive-text-hover">{item.value}</p>
                 </div>
               </div>
             ))}
@@ -112,7 +112,7 @@ export default function ContactSection() {
         {/* Send Message Form Section */}
         <Card className="shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle className="text-2xl font-semibold text-primary">Send Message</CardTitle>
+            <CardTitle className="text-2xl font-semibold text-primary interactive-text-hover">Send Message</CardTitle>
           </CardHeader>
           <CardContent>
             <Form {...form}>

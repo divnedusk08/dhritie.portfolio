@@ -7,8 +7,8 @@ const projectsData: Project[] = [
     title: "TaskFlow",
     shortDescription: "My to-do list app is designed to help users stay organized, focused, and productive. With a clean interface and easy-to-use features, it makes task management simple and effective.",
     longDescription: "TaskFlow is a user-friendly to-do list application aimed at boosting personal productivity. It allows users to create, manage, and track their tasks, set priorities, and mark them as complete. The clean and intuitive interface ensures a seamless user experience.",
-    // imageUrl: "https://www.canva.com/design/DAGoyviuChg/xgUzqIQwc5GNsJ833qzixA/view?utm_content=DAGoyviuChg&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hcceee7fead", 
-    // imageHint: "checklist icon", // Removed image related properties
+    //imageUrl: "https://www.canva.com/design/DAGoyviuChg/xgUzqIQwc5GNsJ833qzixA/view?utm_content=DAGoyviuChg&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hcceee7fead",
+    //imageHint: "checklist icon",
     purpose: "To offer a simple yet powerful tool for individuals to manage their daily tasks, improve organization, and enhance productivity.",
     functionality: [
       "Create new tasks with titles and descriptions",
@@ -27,7 +27,7 @@ export default function ProjectsSection() {
   return (
     <div className="container mx-auto max-w-7xl py-8 px-4 md:py-12">
       <header className="mb-10 text-center">
-        <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
+        <h2 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl interactive-text-hover">
           My Projects
         </h2>
         <p className="mt-3 text-lg text-muted-foreground sm:text-xl">
