@@ -13,7 +13,7 @@ body {
 
 @layer base {
   :root {
-    /* Existing Light Theme (can be further refined if needed) */
+    /* Existing Light Theme */
     --background: 210 29% 96%; /* #F0F4F8 Very light blue */
     --foreground: 210 10% 23%; /* Dark text for readability */
 
@@ -60,7 +60,7 @@ body {
     --sidebar-ring: 22 86% 66%;
   }
 
- /* Dark theme with blue primary and orange accent */
+ /* Dark theme with purple primary and pink accent */
   .dark {
     --background: 225 15% 8%; /* Very Dark Desaturated Blue */
     --foreground: 210 20% 95%;   /* Off-white */
@@ -77,22 +77,22 @@ body {
     --border: 225 10% 25%; /* Slightly lighter border */
     --input: 225 10% 22%;  /* Slightly lighter input */
 
-    --primary: 240 80% 65%; /* Blue */
-    --primary-foreground: 210 20% 98%; /* Off-white for Blue */
+    --primary: 270 60% 65%; /* Vibrant Purple */
+    --primary-foreground: 210 20% 98%; /* Off-white for Purple */
     
-    --secondary: 260 70% 55%; /* Darker Purpleish */
+    --secondary: 260 70% 55%; /* Darker Purpleish (kept from an earlier state) */
     --secondary-foreground: 260 70% 95%;
 
-    --accent: 22 86% 66%; /* #F0935F Muted orange */
-    --accent-foreground: 22 85% 10%; /* Dark text for accent elements */
+    --accent: 330 85% 60%; /* Vibrant Pink */
+    --accent-foreground: 330 85% 15%; /* Dark text for Pink */
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --ring: 240 80% 65%; /* Blue for focus rings */
+    --ring: 270 60% 65%; /* Vibrant Purple for focus rings */
 
-    --chart-1: 240 80% 65%; /* Blue */
-    --chart-2: 22 86% 66%; /* Muted orange */
+    --chart-1: 270 60% 65%; /* Vibrant Purple */
+    --chart-2: 330 85% 60%; /* Vibrant Pink */
     --chart-3: 225 15% 50%; /* A different supporting color */
     --chart-4: 225 15% 40%;
     --chart-5: 210 20% 95%;
