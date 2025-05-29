@@ -28,7 +28,7 @@ const achievementsData: Achievement[] = [
   {
     id: "8",
     title: "NJHS Officer",
-    issuer: undefined,
+    issuer: "fsms.njhs@leanderisd.org",
     date: "May 21, 2025",
     description: "As an NJHS Officer, I take pride in leading with integrity, responsibility, and a commitment to service. I help organize events, support fellow members, and represent our chapter’s core values of scholarship, leadership, service, character, and citizenship. This role allows me to grow as a leader while making a positive impact on my school and community.",
     icon: Star,
@@ -48,7 +48,7 @@ const achievementsData: Achievement[] = [
   {
     id: "7",
     title: "1st Place – Most Innovative Product Idea (LED Wishes)",
-    issuer: undefined,
+    issuer: "Lisa Hood",
     date: "May 24, 2025",
     description: "Winning 1st place for the Most Innovative Product Idea with LED Wishes reflects my passion for combining creativity and purpose. LED Wishes is a unique concept designed to bring light and positivity into people's lives—literally and symbolically.",
     icon: Lightbulb,
