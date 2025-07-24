@@ -99,13 +99,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
               </div>
             </section>
             <div className="mt-6 flex flex-wrap gap-3">
-              {project.liveLink && (
-                <Button asChild variant="default" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" /> View Live
-                  </a>
-                </Button>
-              )}
               {project.repoLink && (
                 <Button asChild variant="outline">
                   <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
