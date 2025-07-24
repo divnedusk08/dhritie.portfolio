@@ -6,6 +6,21 @@ import { cn } from "@/lib/utils";
 
 const projectsData: Project[] = [
   {
+    id: "3",
+    title: "HourTrackr NJHS",
+    shortDescription: "A web app to help NJHS members easily track and view their volunteer hours, simplifying the process of managing service commitments.",
+    longDescription: "HourTrackr NJHS was developed to streamline the volunteer hour logging process for National Junior Honor Society members. The application provides a user-friendly interface for students to submit, track, and get an overview of their service hours, ensuring they meet their requirements with less administrative hassle.",
+    purpose: "To provide a centralized and easy-to-use digital tool for NJHS members to manage their volunteer hours, promoting accountability and organization.",
+    functionality: [
+      "User-friendly hour submission form",
+      "Dashboard to view total and individual hours logged",
+      "Secure user authentication for members",
+      "Automated tracking of service hour goals",
+    ],
+    techStack: ["React", "Firebase", "Netlify", "Shadcn/UI", "Tailwind CSS"],
+    liveLink: "https://hourtrackr.netlify.app/",
+  },
+  {
     id: "2",
     title: "TaskFlow",
     shortDescription: "My to-do list app is designed to help users stay organized, focused, and productive. With a clean interface and easy-to-use features, it makes task management simple and effective.",
